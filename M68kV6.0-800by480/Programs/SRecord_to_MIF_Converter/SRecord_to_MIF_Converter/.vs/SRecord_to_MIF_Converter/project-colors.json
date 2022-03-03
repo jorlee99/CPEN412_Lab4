@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ce2afcd8-be65-4b88-a587-29a68e0b5547": {
+      "ProjectGuid": "ce2afcd8-be65-4b88-a587-29a68e0b5547",
+      "DisplayName": "SRecord_to_MIF_Converter",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
