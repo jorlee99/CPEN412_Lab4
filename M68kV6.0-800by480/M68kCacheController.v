@@ -225,7 +225,7 @@ module M68kCacheController_Verilog (
 			DtackTo68k_L <= 1'b0; //Activate the DtackTo68k_L signal
 			if (AS_L == 1'b0) //If AS_L is active 
 			begin
-				NextState <= WaitForEndOfCacheRead //-- stay in this state until AS_L deactivated
+				NextState <= WaitForEndOfCacheRead; //-- stay in this state until AS_L deactivated
 			end
 
 		end
