@@ -55,17 +55,17 @@ module M68kCacheController_Verilog (
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Initialisation States
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	parameter	Reset	= 5'b00000;
-	parameter	InvalidateCache = 5'b00001 ;
-	parameter 	Idle = 5'b00010;	
-	parameter	CheckForCacheHit = 5'b00011;	
-	parameter	ReadDataFromDramIntoCache = 5'b00100 ;
-	parameter	CASDelay1 = 5'b00101;
-	parameter	CASDelay2 = 5'b00110;
-	parameter	BurstFill = 5'b00111;
-	parameter	EndBurstFill = 5'b01000 ;
-	parameter	WriteDataToDram = 5'b01001 ;
-	parameter	WaitForEndOfCacheRead = 5'b01010 ;
+	parameter	Reset						= 5'b00000;
+	parameter	InvalidateCache 			= 5'b00001;
+	parameter 	Idle 						= 5'b00010;	
+	parameter	CheckForCacheHit 			= 5'b00011;	
+	parameter	ReadDataFromDramIntoCache 	= 5'b00100;
+	parameter	CASDelay1 					= 5'b00101;
+	parameter	CASDelay2 					= 5'b00110;
+	parameter	BurstFill 					= 5'b00111;
+	parameter	EndBurstFill 				= 5'b01000;
+	parameter	WriteDataToDram 			= 5'b01001;
+	parameter	WaitForEndOfCacheRead 		= 5'b01010;
 	
 	
 	// 5 bit variables to hold current and next state of the state machine
@@ -227,6 +227,7 @@ module M68kCacheController_Verilog (
 			begin
 				NextState <= WaitForEndOfCacheRead; //-- stay in this state until AS_L deactivated
 			end
+			// since there is NextState specified if the above if statement is not satisfied, the next state is the default one, which is Idle
 
 		end
 			
@@ -268,7 +269,7 @@ module M68kCacheController_Verilog (
 			// -- By Default : Address bus to Dram is already set to the 68k's address bus by default
 			// -- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
 			DramSelectFromCache_L  <= 1'b0; //Keep activating DramSelectFromCache_L -- keep reading from Dram
-			DtackTo68k_L <= 1'b0; //Deactivate DtackTo68k_L  signal -- no dtack to 68k until burst fill complete
+			DtackTo68k_L <= 1'b1; //Deactivate DtackTo68k_L (setting the signal to high)  signal -- no dtack to 68k until burst fill complete
 			NextState <= CASDelay2;
 		end
 				
@@ -282,8 +283,8 @@ module M68kCacheController_Verilog (
 			// -- By Default : Address bus to Dram is already set to the 68k's address bus by default
 			// -- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
 			DramSelectFromCache_L  <= 1'b0; //Keep activating DramSelectFromCache_L -- keep reading from Dram
-			DtackTo68k_L <= 1'b0; //Deactivate DtackTo68k_L  signal -- no dtack to 68k until burst fill complete
-			BurstCounterReset_L <= 1'b1; //Activate BurstCounterReset_L signal
+			DtackTo68k_L <= 1'b1; //Deactivate DtackTo68k_L (setting it to high)  signal -- no dtack to 68k until burst fill complete
+			BurstCounterReset_L <= 1'b0; //Activate BurstCounterReset_L (setting it to low) signal
 			NextState = BurstFill;
 		end
 
@@ -297,7 +298,7 @@ module M68kCacheController_Verilog (
 			// -- By Default : Address bus to Dram is already set to the 68k's address bus by default
 			// -- By Default: AS_L, WE_L to Dram are already set to 68k's equivalent by default
 			DramSelectFromCache_L  <= 1'b0; //Keep activating DramSelectFromCache_L -- keep reading from Dram
-			DtackTo68k_L <= 1'b0; //Deactivate DtackTo68k_L  signal -- no dtack to 68k until burst fill complete
+			DtackTo68k_L <= 1'b1; //Deactivate DtackTo68k_L (setting it to high)  signal -- no dtack to 68k until burst fill complete
 			// -- burst counter should now be 0 when we first enter this state, as reset was synchronous and will count with each clock
 			if (BurstCounter >= 3'b100) //If BurstCounter = 8  { -- if we have read 8 words, it's time to stop
 			begin
@@ -324,7 +325,7 @@ module M68kCacheController_Verilog (
 			//-- get the data from the Cache corresponding the REAL 68k address we are reading from
 			WordAddress <= AddressBusInFrom68k[3:1];// Set WordAddress (to cache memory) to AddressBusInFrom68k bits [3:1]
 			DataBusOutTo68k <= DataBusInFromCache;// Set DataBusOutTo68k to DataBusInFromCache; -- get data from the Cache and give to cpu
-			if(AS_L == 1'b1 && DramSelect68k_H == 1'b0) //if AS_L is INactive or DramSelect68k_H is INactive { 
+			if(AS_L == 1'b1 || DramSelect68k_H == 1'b0) //if AS_L is INactive OR DramSelect68k_H is INactive { 
 			begin
 				NextState <= Idle; //Next state = IDLE; 
 			end
