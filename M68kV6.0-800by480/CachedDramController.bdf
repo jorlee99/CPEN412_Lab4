@@ -661,9 +661,9 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 392 200 816 488)
+	(rect 408 200 824 488)
 	(text "DramCache" (rect 5 0 73 19)(font "Intel Clear" (font_size 8)))
-	(text "inst" (rect 8 267 24 284)(font "Intel Clear" ))
+	(text "inst1" (rect 8 267 30 284)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -688,8 +688,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 80)
 		(input)
-		(text "AddressBusInFrom68k[31..0]" (rect 0 0 173 19)(font "Intel Clear" (font_size 8)))
-		(text "AddressBusInFrom68k[31..0]" (rect 21 75 194 94)(font "Intel Clear" (font_size 8)))
+		(text "AddresBusInFrom68k[31..0]" (rect 0 0 167 19)(font "Intel Clear" (font_size 8)))
+		(text "AddresBusInFrom68k[31..0]" (rect 21 75 188 94)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
@@ -756,189 +756,125 @@ refer to the applicable agreement for further details.
 		(line (pt 0 224)(pt 16 224)(line_width 3))
 	)
 	(port
-		(pt 424 32)
+		(pt 416 32)
 		(output)
 		(text "DataBusOutTo68k[15..0]" (rect 0 0 148 19)(font "Intel Clear" (font_size 8)))
-		(text "DataBusOutTo68k[15..0]" (rect 255 27 403 46)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 32)(pt 408 32)(line_width 3))
+		(text "DataBusOutTo68k[15..0]" (rect 247 27 395 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 32)(pt 400 32)(line_width 3))
 	)
 	(port
-		(pt 424 48)
+		(pt 416 48)
 		(output)
 		(text "DataOutToDramController[15..0]" (rect 0 0 194 19)(font "Intel Clear" (font_size 8)))
-		(text "DataOutToDramController[15..0]" (rect 209 43 403 62)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 48)(pt 408 48)(line_width 3))
+		(text "DataOutToDramController[15..0]" (rect 201 43 395 62)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 48)(pt 400 48)(line_width 3))
 	)
 	(port
-		(pt 424 64)
+		(pt 416 64)
 		(output)
 		(text "UDS_DramController_L" (rect 0 0 139 19)(font "Intel Clear" (font_size 8)))
-		(text "UDS_DramController_L" (rect 264 59 403 78)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 64)(pt 408 64))
+		(text "UDS_DramController_L" (rect 256 59 395 78)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 64)(pt 400 64))
 	)
 	(port
-		(pt 424 80)
+		(pt 416 80)
 		(output)
 		(text "LDS_DramController_L" (rect 0 0 136 19)(font "Intel Clear" (font_size 8)))
-		(text "LDS_DramController_L" (rect 267 75 403 94)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 80)(pt 408 80))
+		(text "LDS_DramController_L" (rect 259 75 395 94)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 80)(pt 400 80))
 	)
 	(port
-		(pt 424 96)
+		(pt 416 96)
 		(output)
 		(text "DramSelectFromCache_L" (rect 0 0 149 19)(font "Intel Clear" (font_size 8)))
-		(text "DramSelectFromCache_L" (rect 254 91 403 110)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 96)(pt 408 96))
+		(text "DramSelectFromCache_L" (rect 246 91 395 110)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 96)(pt 400 96))
 	)
 	(port
-		(pt 424 112)
+		(pt 416 112)
 		(output)
 		(text "WE_DramController_L" (rect 0 0 130 19)(font "Intel Clear" (font_size 8)))
-		(text "WE_DramController_L" (rect 273 107 403 126)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 112)(pt 408 112))
+		(text "WE_DramController_L" (rect 265 107 395 126)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 112)(pt 400 112))
 	)
 	(port
-		(pt 424 128)
+		(pt 416 128)
 		(output)
 		(text "AS_DramController_L" (rect 0 0 128 19)(font "Intel Clear" (font_size 8)))
-		(text "AS_DramController_L" (rect 275 123 403 142)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 128)(pt 408 128))
+		(text "AS_DramController_L" (rect 267 123 395 142)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 128)(pt 400 128))
 	)
 	(port
-		(pt 424 144)
+		(pt 416 144)
 		(output)
 		(text "DtackTo68k_L" (rect 0 0 87 19)(font "Intel Clear" (font_size 8)))
-		(text "DtackTo68k_L" (rect 316 139 403 158)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 144)(pt 408 144))
+		(text "DtackTo68k_L" (rect 308 139 395 158)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 144)(pt 400 144))
 	)
 	(port
-		(pt 424 160)
+		(pt 416 160)
 		(output)
 		(text "AddressBusToDram[31..0]" (rect 0 0 156 19)(font "Intel Clear" (font_size 8)))
-		(text "AddressBusToDram[31..0]" (rect 247 155 403 174)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 160)(pt 408 160)(line_width 3))
+		(text "AddressBusToDram[31..0]" (rect 239 155 395 174)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 160)(pt 400 160)(line_width 3))
 	)
 	(port
-		(pt 424 176)
+		(pt 416 176)
 		(output)
 		(text "WordAddress[2..0]" (rect 0 0 110 19)(font "Intel Clear" (font_size 8)))
-		(text "WordAddress[2..0]" (rect 293 171 403 190)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 176)(pt 408 176)(line_width 3))
+		(text "WordAddress[2..0]" (rect 285 171 395 190)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 176)(pt 400 176)(line_width 3))
 	)
 	(port
-		(pt 424 192)
+		(pt 416 192)
 		(output)
 		(text "CacheState[4..0]" (rect 0 0 97 19)(font "Intel Clear" (font_size 8)))
-		(text "CacheState[4..0]" (rect 306 187 403 206)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 192)(pt 408 192)(line_width 3))
+		(text "CacheState[4..0]" (rect 298 187 395 206)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 192)(pt 400 192)(line_width 3))
 	)
 	(port
-		(pt 424 208)
+		(pt 416 208)
 		(output)
 		(text "Hit_H" (rect 0 0 34 19)(font "Intel Clear" (font_size 8)))
-		(text "Hit_H" (rect 369 203 403 222)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 208)(pt 408 208))
+		(text "Hit_H" (rect 361 203 395 222)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 208)(pt 400 208))
 	)
 	(port
-		(pt 424 224)
+		(pt 416 224)
 		(output)
 		(text "CacheDataWrite_L" (rect 0 0 109 19)(font "Intel Clear" (font_size 8)))
-		(text "CacheDataWrite_L" (rect 294 219 403 238)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 224)(pt 408 224))
+		(text "CacheDataWrite_L" (rect 286 219 395 238)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 224)(pt 400 224))
 	)
 	(port
-		(pt 424 240)
+		(pt 416 240)
 		(output)
 		(text "CacheAddressWrite_L" (rect 0 0 129 19)(font "Intel Clear" (font_size 8)))
-		(text "CacheAddressWrite_L" (rect 274 235 403 254)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 240)(pt 408 240))
+		(text "CacheAddressWrite_L" (rect 266 235 395 254)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 240)(pt 400 240))
 	)
 	(port
-		(pt 424 256)
+		(pt 416 256)
 		(output)
 		(text "CacheDataOut[15..0]" (rect 0 0 123 19)(font "Intel Clear" (font_size 8)))
-		(text "CacheDataOut[15..0]" (rect 280 251 403 270)(font "Intel Clear" (font_size 8)))
-		(line (pt 424 256)(pt 408 256)(line_width 3))
+		(text "CacheDataOut[15..0]" (rect 272 251 395 270)(font "Intel Clear" (font_size 8)))
+		(line (pt 416 256)(pt 400 256)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 408 272))
+		(rectangle (rect 16 16 400 272))
 	)
-)
-(connector
-	(pt 224 264)
-	(pt 392 264)
-)
-(connector
-	(pt 224 280)
-	(pt 392 280)
-	(bus)
-)
-(connector
-	(pt 224 296)
-	(pt 392 296)
-	(bus)
-)
-(connector
-	(pt 224 312)
-	(pt 392 312)
-)
-(connector
-	(pt 224 328)
-	(pt 392 328)
-)
-(connector
-	(pt 224 344)
-	(pt 392 344)
-)
-(connector
-	(pt 224 360)
-	(pt 392 360)
-)
-(connector
-	(pt 392 376)
-	(pt 376 376)
-)
-(connector
-	(pt 376 376)
-	(pt 376 504)
 )
 (connector
 	(pt 1344 504)
 	(pt 376 504)
 )
 (connector
-	(pt 392 408)
-	(pt 344 408)
-)
-(connector
-	(pt 344 408)
-	(pt 344 536)
-)
-(connector
-	(pt 392 392)
-	(pt 360 392)
-)
-(connector
 	(pt 344 536)
 	(pt 1376 536)
 )
 (connector
-	(pt 360 392)
-	(pt 360 520)
-)
-(connector
 	(pt 360 520)
 	(pt 1360 520)
-)
-(connector
-	(pt 392 424)
-	(pt 328 424)
-	(bus)
-)
-(connector
-	(pt 328 424)
-	(pt 328 552)
-	(bus)
 )
 (connector
 	(pt 328 552)
@@ -958,30 +894,8 @@ refer to the applicable agreement for further details.
 	(pt 1360 248)
 )
 (connector
-	(pt 1392 312)
-	(pt 1312 312)
-	(bus)
-)
-(connector
 	(pt 1344 328)
 	(pt 1312 328)
-)
-(connector
-	(pt 816 248)
-	(pt 1072 248)
-	(bus)
-)
-(connector
-	(pt 816 296)
-	(pt 1072 296)
-)
-(connector
-	(pt 816 312)
-	(pt 1072 312)
-)
-(connector
-	(pt 816 328)
-	(pt 1072 328)
 )
 (connector
 	(pt 1464 592)
@@ -992,32 +906,12 @@ refer to the applicable agreement for further details.
 	(pt 1032 264)
 )
 (connector
-	(pt 816 264)
-	(pt 1032 264)
-)
-(connector
-	(pt 1032 264)
-	(pt 1072 264)
-)
-(connector
 	(pt 1464 576)
 	(pt 1048 576)
 )
 (connector
 	(pt 1048 576)
 	(pt 1048 280)
-)
-(connector
-	(pt 816 280)
-	(pt 1048 280)
-)
-(connector
-	(pt 1048 280)
-	(pt 1072 280)
-)
-(connector
-	(pt 1392 312)
-	(pt 1456 312)
 )
 (connector
 	(pt 1392 312)
@@ -1075,14 +969,6 @@ refer to the applicable agreement for further details.
 	(pt 376 232)
 )
 (connector
-	(pt 224 232)
-	(pt 376 232)
-)
-(connector
-	(pt 376 232)
-	(pt 392 232)
-)
-(connector
 	(pt 1072 200)
 	(pt 1064 200)
 )
@@ -1099,14 +985,6 @@ refer to the applicable agreement for further details.
 	(pt 328 248)
 )
 (connector
-	(pt 224 248)
-	(pt 328 248)
-)
-(connector
-	(pt 328 248)
-	(pt 392 248)
-)
-(connector
 	(pt 1072 216)
 	(pt 1048 216)
 )
@@ -1119,23 +997,8 @@ refer to the applicable agreement for further details.
 	(pt 1048 184)
 )
 (connector
-	(pt 816 360)
-	(pt 1008 360)
-	(bus)
-)
-(connector
-	(pt 1008 360)
-	(pt 1008 232)
-	(bus)
-)
-(connector
 	(pt 1072 232)
 	(pt 1008 232)
-	(bus)
-)
-(connector
-	(pt 816 232)
-	(pt 992 232)
 	(bus)
 )
 (connector
@@ -1144,45 +1007,12 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 992 232)
-	(pt 992 624)
-	(bus)
-)
-(connector
 	(pt 1464 640)
 	(pt 976 640)
 )
 (connector
-	(pt 976 640)
-	(pt 976 344)
-)
-(connector
-	(pt 816 344)
-	(pt 976 344)
-)
-(connector
-	(pt 816 376)
-	(pt 960 376)
-	(bus)
-)
-(connector
 	(pt 1464 680)
 	(pt 960 680)
-	(bus)
-)
-(connector
-	(pt 960 376)
-	(pt 960 680)
-	(bus)
-)
-(connector
-	(pt 816 392)
-	(pt 944 392)
-	(bus)
-)
-(connector
-	(pt 944 392)
-	(pt 944 696)
 	(bus)
 )
 (connector
@@ -1195,41 +1025,12 @@ refer to the applicable agreement for further details.
 	(pt 920 712)
 )
 (connector
-	(pt 920 712)
-	(pt 920 408)
-)
-(connector
-	(pt 816 408)
-	(pt 920 408)
-)
-(connector
-	(pt 816 424)
-	(pt 904 424)
-)
-(connector
 	(pt 1464 728)
 	(pt 904 728)
 )
 (connector
-	(pt 904 728)
-	(pt 904 424)
-)
-(connector
-	(pt 816 440)
-	(pt 888 440)
-)
-(connector
 	(pt 1464 744)
 	(pt 888 744)
-)
-(connector
-	(pt 888 744)
-	(pt 888 440)
-)
-(connector
-	(pt 816 456)
-	(pt 872 456)
-	(bus)
 )
 (connector
 	(pt 1464 760)
@@ -1237,14 +1038,214 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
+	(pt 1312 312)
+	(pt 1392 312)
+	(bus)
+)
+(connector
+	(pt 1392 312)
+	(pt 1456 312)
+	(bus)
+)
+(connector
+	(pt 1008 232)
+	(pt 1008 360)
+	(bus)
+)
+(connector
+	(pt 992 624)
+	(pt 992 232)
+	(bus)
+)
+(connector
+	(pt 976 640)
+	(pt 976 344)
+)
+(connector
+	(pt 960 680)
+	(pt 960 376)
+	(bus)
+)
+(connector
+	(pt 944 696)
+	(pt 944 392)
+	(bus)
+)
+(connector
+	(pt 920 712)
+	(pt 920 408)
+)
+(connector
+	(pt 904 728)
+	(pt 904 424)
+)
+(connector
+	(pt 888 744)
+	(pt 888 440)
+)
+(connector
 	(pt 872 760)
 	(pt 872 456)
 	(bus)
 )
+(connector
+	(pt 376 504)
+	(pt 376 376)
+)
+(connector
+	(pt 344 536)
+	(pt 344 408)
+)
+(connector
+	(pt 360 520)
+	(pt 360 392)
+)
+(connector
+	(pt 328 552)
+	(pt 328 424)
+	(bus)
+)
+(connector
+	(pt 1072 328)
+	(pt 824 328)
+)
+(connector
+	(pt 992 232)
+	(pt 824 232)
+	(bus)
+)
+(connector
+	(pt 1072 248)
+	(pt 824 248)
+	(bus)
+)
+(connector
+	(pt 1072 296)
+	(pt 824 296)
+)
+(connector
+	(pt 1072 312)
+	(pt 824 312)
+)
+(connector
+	(pt 976 344)
+	(pt 824 344)
+)
+(connector
+	(pt 1008 360)
+	(pt 824 360)
+	(bus)
+)
+(connector
+	(pt 960 376)
+	(pt 824 376)
+	(bus)
+)
+(connector
+	(pt 944 392)
+	(pt 824 392)
+	(bus)
+)
+(connector
+	(pt 920 408)
+	(pt 824 408)
+)
+(connector
+	(pt 904 424)
+	(pt 824 424)
+)
+(connector
+	(pt 888 440)
+	(pt 824 440)
+)
+(connector
+	(pt 872 456)
+	(pt 824 456)
+	(bus)
+)
+(connector
+	(pt 224 232)
+	(pt 376 232)
+)
+(connector
+	(pt 224 248)
+	(pt 328 248)
+)
+(connector
+	(pt 824 264)
+	(pt 1032 264)
+)
+(connector
+	(pt 1032 264)
+	(pt 1072 264)
+)
+(connector
+	(pt 824 280)
+	(pt 1048 280)
+)
+(connector
+	(pt 1048 280)
+	(pt 1072 280)
+)
+(connector
+	(pt 376 232)
+	(pt 408 232)
+)
+(connector
+	(pt 328 248)
+	(pt 408 248)
+)
+(connector
+	(pt 224 264)
+	(pt 408 264)
+)
+(connector
+	(pt 224 280)
+	(pt 408 280)
+	(bus)
+)
+(connector
+	(pt 224 296)
+	(pt 408 296)
+	(bus)
+)
+(connector
+	(pt 224 312)
+	(pt 408 312)
+)
+(connector
+	(pt 224 328)
+	(pt 408 328)
+)
+(connector
+	(pt 224 344)
+	(pt 408 344)
+)
+(connector
+	(pt 224 360)
+	(pt 408 360)
+)
+(connector
+	(pt 376 376)
+	(pt 408 376)
+)
+(connector
+	(pt 360 392)
+	(pt 408 392)
+)
+(connector
+	(pt 344 408)
+	(pt 408 408)
+)
+(connector
+	(pt 328 424)
+	(pt 408 424)
+	(bus)
+)
 (junction (pt 1032 264))
 (junction (pt 1048 280))
-(junction (pt 1392 312))
 (junction (pt 1360 248))
 (junction (pt 1376 232))
 (junction (pt 376 232))
 (junction (pt 328 248))
+(junction (pt 1392 312))

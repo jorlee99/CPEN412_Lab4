@@ -5330,11 +5330,6 @@ refer to the applicable agreement for further details.
 	(pt 1176 -208)
 )
 (connector
-	(text "originalclock(inverted)DELETE" (rect 1298 -224 1440 -207)(font "Intel Clear" ))
-	(pt 1176 -208)
-	(pt 1448 -208)
-)
-(connector
 	(pt 1248 -664)
 	(pt 1248 -176)
 )
@@ -5457,20 +5452,12 @@ refer to the applicable agreement for further details.
 	(pt 1408 -192)
 )
 (connector
-	(pt 1408 -192)
-	(pt 1408 -248)
-)
-(connector
 	(pt 1160 -800)
 	(pt 1160 -680)
 )
 (connector
 	(pt 1160 -680)
 	(pt 1160 -256)
-)
-(connector
-	(pt 1160 -256)
-	(pt 2024 -256)
 )
 (connector
 	(pt 1744 -208)
@@ -5585,6 +5572,23 @@ refer to the applicable agreement for further details.
 	(pt 1920 0)
 	(pt 2080 0)
 )
+(connector
+	(text "<<__$DEF_ALIAS502>>" (rect 1306 -224 1418 -207)(font "Intel Clear" )(invisible))
+	(pt 1456 -208)
+	(pt 1176 -208)
+)
+(connector
+	(pt 1408 -256)
+	(pt 1408 -192)
+)
+(connector
+	(pt 1160 -256)
+	(pt 1408 -256)
+)
+(connector
+	(pt 1408 -256)
+	(pt 2024 -256)
+)
 (junction (pt 1280 224))
 (junction (pt 1376 224))
 (junction (pt 1296 240))
@@ -5687,6 +5691,7 @@ refer to the applicable agreement for further details.
 (junction (pt 1280 -144))
 (junction (pt 1904 -64))
 (junction (pt 1920 0))
+(junction (pt 1408 -256))
 (text "Push Button 1" (rect -800 280 -721 294)(font "Arial" (font_size 8)))
 (text "Push Button 2" (rect -800 344 -721 358)(font "Arial" (font_size 8)))
 (text "Push Button 3" (rect -784 -240 -705 -226)(font "Arial" (font_size 8)))
