@@ -3839,10 +3839,6 @@ refer to the applicable agreement for further details.
 	(pt 616 2192)
 )
 (connector
-	(pt 1472 1680)
-	(pt 1472 1728)
-)
-(connector
 	(text "Address[31..0]" (rect 938 1744 1009 1756)(font "Arial" )(invisible))
 	(pt 792 1760)
 	(pt 1528 1760)
@@ -4500,11 +4496,6 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "Clock50Mhz" (rect 1416 1688 1475 1700)(font "Arial" ))
-	(pt 1472 1728)
-	(pt 1528 1728)
-)
-(connector
 	(pt 1160 -680)
 	(pt 1456 -680)
 )
@@ -5113,11 +5104,6 @@ refer to the applicable agreement for further details.
 	(pt 1248 2160)
 	(pt 1544 2160)
 	(bus)
-)
-(connector
-	(text "Clock50Mhz" (rect 1450 2160 1509 2172)(font "Arial" ))
-	(pt 1456 2176)
-	(pt 1544 2176)
 )
 (connector
 	(pt 736 2208)

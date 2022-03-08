@@ -285,7 +285,7 @@ module M68kCacheController_Verilog (
 			DramSelectFromCache_L  <= 1'b0; //Keep activating DramSelectFromCache_L -- keep reading from Dram
 			DtackTo68k_L <= 1'b1; //Deactivate DtackTo68k_L (setting it to high)  signal -- no dtack to 68k until burst fill complete
 			BurstCounterReset_L <= 1'b0; //Activate BurstCounterReset_L (setting it to low) signal
-			NextState = BurstFill;
+			NextState <= BurstFill;
 		end
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -302,7 +302,7 @@ module M68kCacheController_Verilog (
 			// -- burst counter should now be 0 when we first enter this state, as reset was synchronous and will count with each clock
 			if (BurstCounter >= 3'b100) //If BurstCounter = 8  { -- if we have read 8 words, it's time to stop
 			begin
-				NextState =EndBurstFill;// Next state = EndBurstFill;
+				NextState <=EndBurstFill;// Next state = EndBurstFill;
 			end
 			else 
 			begin

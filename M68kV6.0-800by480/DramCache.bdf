@@ -23,7 +23,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 472 368 640 384)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "Clock" (rect 5 0 33 17)(font "Intel Clear" ))
+	(text "Clock" (rect 5 0 32 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -39,7 +39,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 472 384 640 400)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "Reset_L" (rect 5 0 44 17)(font "Intel Clear" ))
+	(text "Reset_L" (rect 5 0 43 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -55,7 +55,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 432 432 640 448)
 	(text "INPUT" (rect 165 0 193 10)(font "Arial" (font_size 6)))
-	(text "DramSelectFrom68k_H" (rect 5 0 116 17)(font "Intel Clear" ))
+	(text "DramSelectFrom68k_H" (rect 5 0 115 17)(font "Intel Clear" ))
 	(pt 208 8)
 	(drawing
 		(line (pt 124 12)(pt 149 12))
@@ -71,7 +71,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 416 448 640 464)
 	(text "INPUT" (rect 181 0 209 10)(font "Arial" (font_size 6)))
-	(text "AddresBusInFrom68k[31..0]" (rect 5 0 136 17)(font "Intel Clear" ))
+	(text "AddresBusInFrom68k[31..0]" (rect 5 0 135 17)(font "Intel Clear" ))
 	(pt 224 8)
 	(drawing
 		(line (pt 140 12)(pt 165 12))
@@ -87,7 +87,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 424 464 640 480)
 	(text "INPUT" (rect 173 0 201 10)(font "Arial" (font_size 6)))
-	(text "DataBusInFrom68k[15..0]" (rect 5 0 126 17)(font "Intel Clear" ))
+	(text "DataBusInFrom68k[15..0]" (rect 5 0 125 17)(font "Intel Clear" ))
 	(pt 216 8)
 	(drawing
 		(line (pt 132 12)(pt 157 12))
@@ -103,7 +103,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 472 480 640 496)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "UDS_L" (rect 5 0 37 17)(font "Intel Clear" ))
+	(text "UDS_L" (rect 5 0 36 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -119,7 +119,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 472 496 640 512)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "LDS_L" (rect 5 0 36 17)(font "Intel Clear" ))
+	(text "LDS_L" (rect 5 0 35 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -135,7 +135,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 472 512 640 528)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "RW" (rect 5 0 23 17)(font "Intel Clear" ))
+	(text "RW" (rect 5 0 22 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -151,7 +151,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 472 528 640 544)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "AS_L" (rect 5 0 30 17)(font "Intel Clear" ))
+	(text "AS_L" (rect 5 0 29 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -199,7 +199,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 432 592 640 608)
 	(text "INPUT" (rect 165 0 193 10)(font "Arial" (font_size 6)))
-	(text "DataInFromDram[15..0]" (rect 5 0 116 17)(font "Intel Clear" ))
+	(text "DataInFromDram[15..0]" (rect 5 0 115 17)(font "Intel Clear" ))
 	(pt 208 8)
 	(drawing
 		(line (pt 124 12)(pt 149 12))
@@ -215,7 +215,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect 472 576 640 592)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "RAS_Dram_L" (rect 5 0 69 17)(font "Intel Clear" ))
+	(text "RAS_Dram_L" (rect 5 0 68 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -795,49 +795,6 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 720 872 928 1000)
-	(text "Valid" (rect 5 0 35 19)(font "Intel Clear" (font_size 8)))
-	(text "inst" (rect 8 107 24 124)(font "Intel Clear" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "ValidityBitIn" (rect 0 0 73 19)(font "Intel Clear" (font_size 8)))
-		(text "ValidityBitIn" (rect 21 27 94 46)(font "Intel Clear" (font_size 8)))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "WE_L" (rect 0 0 33 19)(font "Intel Clear" (font_size 8)))
-		(text "WE_L" (rect 21 43 54 62)(font "Intel Clear" (font_size 8)))
-		(line (pt 0 48)(pt 16 48))
-	)
-	(port
-		(pt 0 64)
-		(input)
-		(text "Index[4..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
-		(text "Index[4..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
-		(line (pt 0 64)(pt 16 64)(line_width 3))
-	)
-	(port
-		(pt 0 80)
-		(input)
-		(text "Clock" (rect 0 0 31 19)(font "Intel Clear" (font_size 8)))
-		(text "Clock" (rect 21 75 52 94)(font "Intel Clear" (font_size 8)))
-		(line (pt 0 80)(pt 16 80))
-	)
-	(port
-		(pt 208 32)
-		(output)
-		(text "ValidityBitOut" (rect 0 0 83 19)(font "Intel Clear" (font_size 8)))
-		(text "ValidityBitOut" (rect 104 27 187 46)(font "Intel Clear" (font_size 8)))
-		(line (pt 208 32)(pt 192 32))
-	)
-	(drawing
-		(rectangle (rect 16 16 192 112))
-	)
-)
-(symbol
 	(rect 1032 896 1296 1024)
 	(text "TagMemory" (rect 5 0 75 19)(font "Intel Clear" (font_size 8)))
 	(text "inst4" (rect 8 107 30 124)(font "Intel Clear" ))
@@ -1008,6 +965,49 @@ refer to the applicable agreement for further details.
 		(line (pt 8 12)(pt 16 20))
 	)
 	(flipx)
+)
+(symbol
+	(rect 720 872 928 1000)
+	(text "Valid" (rect 5 0 35 19)(font "Intel Clear" (font_size 8)))
+	(text "inst3" (rect 8 107 30 124)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "ValidityBitIn" (rect 0 0 73 19)(font "Intel Clear" (font_size 8)))
+		(text "ValidityBitIn" (rect 21 27 94 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "WE_L" (rect 0 0 33 19)(font "Intel Clear" (font_size 8)))
+		(text "WE_L" (rect 21 43 54 62)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "Index[4..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
+		(text "Index[4..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "Clock" (rect 0 0 31 19)(font "Intel Clear" (font_size 8)))
+		(text "Clock" (rect 21 75 52 94)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
+		(pt 208 32)
+		(output)
+		(text "ValidityBitOut" (rect 0 0 83 19)(font "Intel Clear" (font_size 8)))
+		(text "ValidityBitOut" (rect 104 27 187 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 208 32)(pt 192 32))
+	)
+	(drawing
+		(rectangle (rect 16 16 192 112))
+	)
 )
 (connector
 	(pt 864 320)
