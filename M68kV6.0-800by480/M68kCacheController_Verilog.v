@@ -85,7 +85,7 @@ module M68kCacheController_Verilog (
 
    always@(posedge Clock, negedge Reset_L)
 	begin
-		if(Reset_L == 0) 
+		if(Reset_L == 1'b0) 
 			CurrentState <= Reset ;
 		else
 			CurrentState <= NextState;	
@@ -97,10 +97,10 @@ module M68kCacheController_Verilog (
 
 	always@(posedge Clock)
 	begin
-		if(BurstCounterReset_L == 0) 						// synchronous reset
-			BurstCounter <= 0;
+		if(BurstCounterReset_L == 1'b0) 						// synchronous reset
+			BurstCounter <= 16'b0;
 		else
-			BurstCounter <= BurstCounter + 1;
+			BurstCounter <= BurstCounter + 1'b1;
 	end
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,8 +116,8 @@ module M68kCacheController_Verilog (
 		// default is to give the Dram the 68k's signals directly (unless we want to change something)	
 		
 		AddressBusOutToDramController[31:4]	<= AddressBusInFrom68k[31:4];
-		AddressBusOutToDramController[3:1]  <= 0;								// all reads to Dram have lower 3 address lines set to 0 for a Cache line regardless of 68k address
-		AddressBusOutToDramController[0] 	<= 0;								// to avoid inferring a latch for this bit
+		AddressBusOutToDramController[3:1]  <= 3'b0;								// all reads to Dram have lower 3 address lines set to 0 for a Cache line regardless of 68k address
+		AddressBusOutToDramController[0] 	<= 1'b0;								// to avoid inferring a latch for this bit
 		
 		TagDataOut						<= AddressBusInFrom68k[31:9];
 		Index								<= AddressBusInFrom68k[8:4];			// cache index is 68ks address bits [8:4]
@@ -127,15 +127,15 @@ module M68kCacheController_Verilog (
 		WE_DramController_L 			<= WE_L;
 		AS_DramController_L			<= AS_L;
 		
-		DtackTo68k_L					<= 1;									// don't supply until we are ready
-		TagCache_WE_L 					<= 1;									// don't write Cache address
-		DataCache_WE_L 				<= 1;									// don't write Cache data
-		ValidBit_WE_L					<= 1;									// don't write valid data
-		ValidBitOut_H					<= 0;									// line invalid
-		DramSelectFromCache_L 		<= 1;									// don't give the Dram controller a select signal since we might not always want to cycle the Dram if we have a hit during a read
-		WordAddress						<= 0;									// default is byte 0 in 8 byte Cache line	
+		DtackTo68k_L					<= 1'b1;									// don't supply until we are ready
+		TagCache_WE_L 					<= 1'b1;									// don't write Cache address
+		DataCache_WE_L 				<= 1'b1;									// don't write Cache data
+		ValidBit_WE_L					<= 1'b1;									// don't write valid data
+		ValidBitOut_H					<= 1'b0;									// line invalid
+		DramSelectFromCache_L 		<= 1'b1;									// don't give the Dram controller a select signal since we might not always want to cycle the Dram if we have a hit during a read
+		WordAddress						<= 3'b000;									// default is byte 0 in 8 byte Cache line	
 		
-		BurstCounterReset_L 			<= 1;									// default is that burst counter can run (and wrap around if needed), we'll control when to reset it		
+		BurstCounterReset_L 			<= 1'b1;									// default is that burst counter can run (and wrap around if needed), we'll control when to reset it		
 		NextState 						<= Idle ;							// default is to go to this state
 			
 //////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ module M68kCacheController_Verilog (
 //////////////////////////////////////////////////////////////////
 		
 		if(CurrentState == Reset) begin	  								// if we are in the Reset state				
-			BurstCounterReset_L 				<= 0;							// reset the burst counter (synchronously)
+			BurstCounterReset_L 				<= 1'b0;							// reset the burst counter (synchronously)
 			NextState							<= InvalidateCache;				// go flush the cache
 		end
 
@@ -154,15 +154,15 @@ module M68kCacheController_Verilog (
 			
 			// burst counter should now be 0 when we first enter this state, as it was reset in state above
 			
-			if(BurstCounter == 32) 											// if we have done all cache lines
+			if(BurstCounter == 16'd32) 											// if we have done all cache lines
 				NextState 						<= Idle;
 			else begin
 				NextState						<= InvalidateCache;				// assume we stay here
 				Index	 							<= BurstCounter[4:0];	// 5 bit address for Index for 32 lines of cache
 				
 				// clear the validity bit for each cache line
-				ValidBitOut_H 					<=	0;		
-				ValidBit_WE_L					<= 0;
+				ValidBitOut_H 					<=	1'b0;		
+				ValidBit_WE_L					<= 1'b0;
 			end
 		end
 
@@ -170,7 +170,7 @@ module M68kCacheController_Verilog (
 // Main IDLE state: 
 ///////////////////////////////////////////////
 		else if(CurrentState == Idle) begin	  							// if we are in the idle state				
-			if(AS_L == 0 && DramSelect68k_H == 1) //if AS_L is active and DramSelect68_H  is active {
+			if(AS_L == 1'b0 && DramSelect68k_H == 1'b1) //if AS_L is active and DramSelect68_H  is active {
 			begin
 				if (WE_L == 1'b1) begin
 					UDS_DramController_L <= 1'b0; //activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram regardless of what 68k asks
@@ -299,7 +299,7 @@ module M68kCacheController_Verilog (
 			DramSelectFromCache_L  <= 1'b0; //Keep activating DramSelectFromCache_L -- keep reading from Dram
 			DtackTo68k_L <= 1'b1; //Deactivate DtackTo68k_L (setting it to high)  signal -- no dtack to 68k until burst fill complete
 			// -- burst counter should now be 0 when we first enter this state, as reset was synchronous and will count with each clock
-			if (BurstCounter >= 3'b100) //If BurstCounter = 8  { -- if we have read 8 words, it's time to stop
+			if (BurstCounter >= 16'b0000000000001000) //If BurstCounter = 8  { -- if we have read 8 words, it's time to stop
 			begin
 				NextState <=EndBurstFill;// Next state = EndBurstFill;
 			end
