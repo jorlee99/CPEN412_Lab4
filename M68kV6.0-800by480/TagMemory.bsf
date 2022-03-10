@@ -26,8 +26,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "TagDataIn[22..0]" (rect 0 0 100 19)(font "Intel Clear" (font_size 8)))
-		(text "TagDataIn[22..0]" (rect 21 27 121 46)(font "Intel Clear" (font_size 8)))
+		(text "TagDataIn[18..0]" (rect 0 0 100 19)(font "Intel Clear" (font_size 8)))
+		(text "TagDataIn[18..0]" (rect 21 27 121 46)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
@@ -40,8 +40,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "Index[4..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
-		(text "Index[4..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
+		(text "Index[8..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
+		(text "Index[8..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
@@ -54,8 +54,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 264 32)
 		(output)
-		(text "TagDataOut[22..0]" (rect 0 0 110 19)(font "Intel Clear" (font_size 8)))
-		(text "TagDataOut[22..0]" (rect 133 27 243 46)(font "Intel Clear" (font_size 8)))
+		(text "TagDataOut[18..0]" (rect 0 0 110 19)(font "Intel Clear" (font_size 8)))
+		(text "TagDataOut[18..0]" (rect 133 27 243 46)(font "Intel Clear" (font_size 8)))
 		(line (pt 264 32)(pt 248 32)(line_width 3))
 	)
 	(drawing

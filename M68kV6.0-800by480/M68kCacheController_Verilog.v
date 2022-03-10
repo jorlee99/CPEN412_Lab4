@@ -43,10 +43,10 @@ module M68kCacheController_Verilog (
 		output reg ValidBit_WE_L,												// to store a valid bit
 		
 		output reg unsigned [31:0] AddressBusOutToDramController,  	// address bus from Cache to Dram controller
-		output reg unsigned [22:0] TagDataOut,  							// tag data to store in the tag Cache
+		output reg unsigned [18:0] TagDataOut,  							// tag data to store in the tag Cache
 		output reg unsigned [2:0] WordAddress,								// upto 8 bytes in a Cache line
 		output reg ValidBitOut_H,												// indicates the cache line is valid
-		output reg unsigned [8:4] Index,										// 5 bit index in this example cache
+		output reg unsigned [8:0] Index,										// 5 bit index in this example cache
 
 		output unsigned [4:0] CacheState										// for debugging
 	);
@@ -119,8 +119,8 @@ module M68kCacheController_Verilog (
 		AddressBusOutToDramController[3:1]  <= 3'b0;								// all reads to Dram have lower 3 address lines set to 0 for a Cache line regardless of 68k address
 		AddressBusOutToDramController[0] 	<= 1'b0;								// to avoid inferring a latch for this bit
 		
-		TagDataOut						<= AddressBusInFrom68k[31:9];
-		Index								<= AddressBusInFrom68k[8:4];			// cache index is 68ks address bits [8:4]
+		TagDataOut						<= AddressBusInFrom68k[31:13];
+		Index								<= AddressBusInFrom68k[12:4];			// cache index is 68ks address bits [8:4]
 		
 		UDS_DramController_L			<= UDS_L;
 		LDS_DramController_L	   	<= LDS_L;
@@ -158,7 +158,7 @@ module M68kCacheController_Verilog (
 				NextState 						<= Idle;
 			else begin
 				NextState						<= InvalidateCache;				// assume we stay here
-				Index	 							<= BurstCounter[4:0];	// 5 bit address for Index for 32 lines of cache
+				Index	 							<= BurstCounter[8:0];	      // CHANGED THIS FOR THE 512 LINES. 5 bit address for Index for 32 lines of cache
 				
 				// clear the validity bit for each cache line
 				ValidBitOut_H 					<=	1'b0;		
