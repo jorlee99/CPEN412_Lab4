@@ -172,20 +172,22 @@ module M68kCacheController_Verilog (
 		else if(CurrentState == Idle) begin	  							// if we are in the idle state				
 			if(AS_L == 0 && DramSelect68k_H == 1) //if AS_L is active and DramSelect68_H  is active {
 			begin
-				UDS_DramController_L <= 1'b0; //activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram regardless of what 68k asks
-				LDS_DramController_L <= 1'b0; //overide signals
-				NextState <= CheckForCacheHit; //Next state = CheckForCacheHit
-			end
-			else //-- must be a write, so write the 68k data to Dram and invalidate the line as we don’t cache written data
-			begin
-				if(ValidBitIn_H == 1'b1)
-				begin
-					ValidBitOut_H <= 1'b0; //Set ValidBitOut_H to invalid
-					ValidBit_WE_L <= 1'b1; //Activate ValidBit_WE_L to perform the write to the Valid memory in the cache. This occurs  on next clock edge 
+				if (WE_L == 1'b1) begin
+					UDS_DramController_L <= 1'b0; //activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram regardless of what 68k asks
+					LDS_DramController_L <= 1'b0; //overide signals
+					NextState <= CheckForCacheHit; //Next state = CheckForCacheHit
 				end
+				else //-- must be a write, so write the 68k data to Dram and invalidate the line as we don’t cache written data
+				begin
+					if(ValidBitIn_H == 1'b1)
+					begin
+						ValidBitOut_H <= 1'b0; //Set ValidBitOut_H to invalid
+						ValidBit_WE_L <= 1'b0; //Activate ValidBit_WE_L to perform the write to the Valid memory in the cache. This occurs  on next clock edge 
+					end
 			
-			DramSelectFromCache_L <= 0; //Activate DramSelectFromCache_L to zero to start the Dram controller to perform the write a.s.a.p.
-			NextState <= WriteDataToDram; //Next state = WriteDataToDram to perform the write
+				DramSelectFromCache_L <= 1'b0; //Activate DramSelectFromCache_L to zero to start the Dram controller to perform the write a.s.a.p.
+				NextState <= WriteDataToDram; //Next state = WriteDataToDram to perform the write
+				end
 			end
 		end
 
@@ -236,13 +238,10 @@ module M68kCacheController_Verilog (
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		else if(CurrentState == ReadDataFromDramIntoCache) begin
+			NextState <= ReadDataFromDramIntoCache; //Set Next state =  ReadDataFromDramIntoCache --   unless overridden below
 			if(CAS_Dram_L == 1'b0 && RAS_Dram_L == 1'b1) //If CAS_Dram_L is active and RAS_Dram_L is INactive  { -- a read and not a refresh
 			begin
 				NextState <= CASDelay1;//Go to new state CASDelay1 ; -- move to next state to wait 2 Clock period (CAS  latency) 
-			end
-			else
-			begin
-				NextState <= ReadDataFromDramIntoCache; //Set Next state =  ReadDataFromDramIntoCache --   unless overridden below
 			end
 			//-- Keep Kicking the Dram controller to perform a burst read and fill a Line in the cache
 			DramSelectFromCache_L <= 1'b0;//Activate the DramSelectFromCache_L signal -- keep reading from Dram

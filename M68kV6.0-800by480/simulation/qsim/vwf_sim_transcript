@@ -25,7 +25,7 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: the sole purpose of programming logic devices manufactured by
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details.
-    Info: Processing started: Wed Feb 23 20:41:42 2022
+    Info: Processing started: Tue Mar 08 21:52:43 2022
 Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off MC68K -c MC68K --vector_source=C:/M68kV6.0-800by480/Waveform68k-V15.0-DE1SoC.vwf --testbench_file=C:/M68kV6.0-800by480/simulation/qsim/Waveform68k-V15.0-DE1SoC.vwf.vt
 
 when writing test bench files
@@ -54,20 +54,20 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: the sole purpose of programming logic devices manufactured by
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details.
-    Info: Processing started: Wed Feb 23 20:41:45 2022
+    Info: Processing started: Tue Mar 08 21:52:55 2022
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/M68kV6.0-800by480/simulation/qsim/ MC68K -c MC68K
 Info (204019): Generated file MC68K.vo in folder "C:/M68kV6.0-800by480/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4878 megabytes
-    Info: Processing ended: Wed Feb 23 20:41:50 2022
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:05
+    Info: Peak virtual memory: 4886 megabytes
+    Info: Processing ended: Tue Mar 08 21:53:05 2022
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:10
 
 Completed successfully. 
 
 **** Generating the ModelSim .do script ****
 
-C:/M68kV6.0-800by480/simulation/qsim/MC68K.do generated.
+C:/Users/Jordan/Desktop/cpen412/lab4/M68kV6.0-800by480/simulation/qsim/MC68K.do generated.
 
 Completed successfully. 
 
@@ -80,35 +80,35 @@ Reading C:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
 
 # 10.5b
 
+
 # do MC68K.do
 
 # ** Warning: (vlib-34) Library already exists at "work".
 
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:41:52 on Feb 23,2022
+# Start time: 21:53:09 on Mar 08,2022
 # vlog -work work MC68K.vo 
+
 # -- Compiling module MC68K
 
 # 
 # Top level modules:
 # 	MC68K
-# End time: 20:41:54 on Feb 23,2022, Elapsed time: 0:00:02
+# End time: 21:53:13 on Mar 08,2022, Elapsed time: 0:00:04
 # Errors: 0, Warnings: 0
-
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:41:54 on Feb 23,2022
+# Start time: 21:53:13 on Mar 08,2022
 # vlog -work work Waveform68k-V15.0-DE1SoC.vwf.vt 
 
 # -- Compiling module MC68K_vlg_vec_tst
-
 # 
 # Top level modules:
 # 	MC68K_vlg_vec_tst
-# End time: 20:41:55 on Feb 23,2022, Elapsed time: 0:00:01
+# End time: 21:53:13 on Mar 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
 # vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.MC68K_vlg_vec_tst 
-# Start time: 20:41:55 on Feb 23,2022
+# Start time: 21:53:15 on Mar 08,2022
 # Loading work.MC68K_vlg_vec_tst
 # Loading work.MC68K
 # Loading cyclonev_ver.cyclonev_lcell_comb
@@ -165,7 +165,6 @@ Reading C:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
 # Loading altera_ver.PRIM_GDFF_HIGH
 # ** Warning: Design size of 46884 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
 # Expect performance to be adversely affected.
-
 # after#25
 
 # 
@@ -238,201 +237,220 @@ Reading C:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
 
 # Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 1058480 ps
+# Simulation time: 0 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 3273980 ps
+# Simulation time: 853334 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 5453334 ps
+# Simulation time: 2992100 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 7634280 ps
+# Simulation time: 5113334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 9867230 ps
+# Simulation time: 7293334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 12053335 ps
+# Simulation time: 9453334 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 14241410 ps
+# Simulation time: 11590190 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 16453335 ps
+# Simulation time: 13753335 ps
 
-# Simulation time: 18633334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 18633334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 18633334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 18633334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 18633334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 18633334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 18633334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 15906750 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 20673334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 18055780 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 20071090 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 20071090 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 20071090 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 20071090 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 20071090 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 20071090 ps
 
-# Simulation time: 22693334 ps
+# Simulation time: 20071090 ps
 
-# Simulation time: 24693335 ps
+# Simulation time: 20071090 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 22113334 ps
+
+# Simulation time: 24053300 ps
+
+# Simulation time: 24053300 ps
+
+# Simulation time: 24053300 ps
 
 # ** Note: $finish    : Waveform68k-V15.0-DE1SoC.vwf.vt(180)
 #    Time: 25 us  Iteration: 0  Instance: /MC68K_vlg_vec_tst
-
-# End time: 20:46:02 on Feb 23,2022, Elapsed time: 0:04:07
-# Simulation time: 24693335 ps
-
+# End time: 21:57:50 on Mar 08,2022, Elapsed time: 0:04:35
 # Errors: 0, Warnings: 23
 
 Completed successfully. 
 
 **** Converting ModelSim VCD to vector waveform ****
 
-Reading C:/M68kV6.0-800by480/Waveform68k-V15.0-DE1SoC.vwf...
+Reading C:/Users/Jordan/Desktop/cpen412/lab4/M68kV6.0-800by480/Waveform68k-V15.0-DE1SoC.vwf...
 
-Reading C:/M68kV6.0-800by480/simulation/qsim/MC68K.msim.vcd...
+Reading C:/Users/Jordan/Desktop/cpen412/lab4/M68kV6.0-800by480/simulation/qsim/MC68K.msim.vcd...
 
 Processing channel transitions... 
 
-Writing the resulting VWF to C:/M68kV6.0-800by480/simulation/qsim/MC68K_20220223204602.sim.vwf
+Writing the resulting VWF to C:/Users/Jordan/Desktop/cpen412/lab4/M68kV6.0-800by480/simulation/qsim/MC68K_20220308215750.sim.vwf
 
 Finished VCD to VWF conversion.
 

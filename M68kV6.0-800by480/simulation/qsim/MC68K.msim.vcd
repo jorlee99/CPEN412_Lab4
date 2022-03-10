@@ -3,7 +3,7 @@ $comment
 		vcd file MC68K.msim.vcd -direction
 $end
 $date
-	Wed Feb 23 20:41:59 2022
+	Tue Mar 08 21:53:20 2022
 $end
 $version
 	ModelSim Version 10.5b
