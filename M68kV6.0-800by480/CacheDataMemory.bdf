@@ -432,22 +432,6 @@ refer to the applicable agreement for further details.
 	)
 )
 (connector
-	(pt 664 360)
-	(pt 552 360)
-	(bus)
-)
-(connector
-	(pt 552 200)
-	(pt 552 216)
-	(bus)
-)
-(connector
-	(text "Address7..0]" (rect 536 301 553 358)(font "Intel Clear" )(vertical))
-	(pt 552 216)
-	(pt 552 360)
-	(bus)
-)
-(connector
 	(text "Address[2..0]" (rect 370 184 431 201)(font "Intel Clear" ))
 	(pt 360 200)
 	(pt 552 200)
@@ -603,6 +587,22 @@ refer to the applicable agreement for further details.
 	(text "DataOut[15..8]" (rect 890 312 959 329)(font "Intel Clear" ))
 	(pt 880 328)
 	(pt 984 328)
+	(bus)
+)
+(connector
+	(pt 664 360)
+	(pt 552 360)
+	(bus)
+)
+(connector
+	(pt 552 200)
+	(pt 552 216)
+	(bus)
+)
+(connector
+	(text "Address[7..0]" (rect 536 309 553 370)(font "Intel Clear" )(vertical))
+	(pt 552 216)
+	(pt 552 360)
 	(bus)
 )
 (junction (pt 552 216))

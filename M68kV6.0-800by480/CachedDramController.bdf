@@ -181,7 +181,7 @@ refer to the applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1408 144 1584 160)
+	(rect 1408 96 1584 112)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "DRAM_CLK" (rect 90 0 146 17)(font "Intel Clear" ))
 	(pt 0 8)
@@ -1188,10 +1188,6 @@ refer to the applicable agreement for further details.
 	(pt 992 264)
 )
 (connector
-	(pt 280 80)
-	(pt 96 80)
-)
-(connector
 	(pt 280 296)
 	(pt 280 80)
 )
@@ -1219,9 +1215,26 @@ refer to the applicable agreement for further details.
 	(pt 1272 248)
 	(pt 1432 248)
 )
+(connector
+	(pt 96 80)
+	(pt 280 80)
+)
+(connector
+	(pt 280 80)
+	(pt 1384 80)
+)
+(connector
+	(pt 1408 104)
+	(pt 1384 104)
+)
+(connector
+	(pt 1384 104)
+	(pt 1384 80)
+)
 (junction (pt 1320 280))
 (junction (pt 1336 296))
 (junction (pt 1320 360))
 (junction (pt 960 312))
 (junction (pt 976 328))
 (junction (pt 120 96))
+(junction (pt 280 80))
