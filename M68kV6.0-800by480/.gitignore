@@ -46,7 +46,7 @@
 *.qws
 *.rpt
 *.smsg
-*.sof
+#*.sof
 *.sopc_builder
 *.summary
 *.tcl
@@ -80,7 +80,7 @@ PLLJ_PLLSPE_INFO.txt
 *.cmp
 *.jpg
 *.html
-*.bsf
+#*.bsf
 
 # ignore simulation output of ModelSim
 wlf*
