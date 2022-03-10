@@ -5562,10 +5562,6 @@ refer to the applicable agreement for further details.
 	(pt 2080 -160)
 )
 (connector
-	(pt 1160 -176)
-	(pt 1512 -176)
-)
-(connector
 	(pt 1160 -800)
 	(pt 1160 -680)
 )
@@ -5574,21 +5570,25 @@ refer to the applicable agreement for further details.
 	(pt 1160 -176)
 )
 (connector
-	(pt 2080 -256)
-	(pt 2048 -256)
-)
-(connector
-	(pt 1800 -192)
-	(pt 2048 -192)
-)
-(connector
-	(pt 2048 -192)
-	(pt 2048 -256)
-)
-(connector
 	(text "Clock45Mhz" (rect 1353 2295 1365 2354)(font "Arial" )(vertical))
 	(pt 1376 2328)
 	(pt 1376 2448)
+)
+(connector
+	(pt 1160 -176)
+	(pt 1512 -176)
+)
+(connector
+	(pt 1840 -256)
+	(pt 2080 -256)
+)
+(connector
+	(pt 1800 -192)
+	(pt 1840 -192)
+)
+(connector
+	(pt 1840 -256)
+	(pt 1840 -192)
 )
 (junction (pt 1280 224))
 (junction (pt 1376 224))
