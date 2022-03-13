@@ -233,7 +233,7 @@ module M68kAssociativeCacheController_Verilog (
 				// (which is based on CPU address)
 				LRUBits_Load_H <= 1'b1; //Activate LRUBits_Load_H // Load LRU bits for the line
 				// if the 68k's access is a read
-				if(WE_L == 1'b0) begin// if WE_L is high {
+				if(WE_L == 1'b1) begin// if WE_L is high {
 					UDS_DramController_L <= 1'b0; // activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram 
 					LDS_DramController_L <= 1'b0;// regardless of what 68k asks
 					NextState <= CheckForCacheHit; // NextState = CheckForCacheHit;
@@ -243,9 +243,10 @@ module M68kAssociativeCacheController_Verilog (
 					// if we are writing, and data is already in the cache (a hit), we should invalidate that block/line
 					// so set the ValidBitOut_H to 0 in preparation for a write to the Valid bit if cache hit occurs
 					ValidBitOut_H <= 1'b0; // ValidBitOut_H = 0;
-					if(ValidHit_H[3:0]  != 4'b0000)begin //if (any of the 4 ValidHit_H[3..0] bits are 1) // (indicating a hit for the block)
-						ValidBit_WE_L <= !ValidHit_H[3:0] ; //Activate the single corresponding ValidBit_WE_L to invalidate that line
-					end
+					// if(ValidHit_H  != 4'b0000)begin //if (any of the 4 ValidHit_H[3..0] bits are 1) // (indicating a hit for the block)
+					// 	ValidBit_WE_L <= !ValidHit_H[3:0] ; //Activate the single corresponding ValidBit_WE_L to invalidate that line
+					// end
+					ValidBit_WE_L <= !ValidHit_H[3:0]; // made a change here
 					// writes bypass the cache so start the dram controller to perform the write		
 					DramSelectFromCache_L <= 1'b0;
 					NextState <= WriteDataToDram;
@@ -265,7 +266,7 @@ module M68kAssociativeCacheController_Verilog (
 			// if any Block for the Set produces a valid cache hit, i.e. we found the data we are after.
 			// test each of the 4 blocks to see if one of them has both a cache hit and a valid bit set. 
 			// That will indentify the block containing the data we can use and give to the cpu
-			if(Valid_H[3:0] != 4'b0000)begin //if any of the ValidHit_H[3..0] bits reports a valid hit {
+			if(ValidHit_H[3:0] != 4'b0000)begin //if any of the ValidHit_H[3..0] bits reports a valid hit {
 				// if we have the data in the Cache give it to the 68k and return to idle state
 				// remember defaults:DataBusOutTo68k = DataBusInFromCache,AddressBusOutToDram = AddressBusInFrom68k, 
 				// also remember the cache block DATA MUX is automatically set to the block producing the valid Hit
@@ -274,10 +275,10 @@ module M68kAssociativeCacheController_Verilog (
 				WordAddress <= AddressBusInFrom68k[3:1]; //WordAddress = AddressBusInFrom68k[3..1];
 				DtackTo68k_L <= 1'b0; //Activate DtackTo68k_L 
 				NextState <= WaitForEndOfCacheRead; //NextState = WaitForEndOfCacheRead;
-				if (LRUBits[1:0] == 2'b00)begin //if LRUBits[0] and LRUBits[1] are both 0
+				if (LRUBits[1] == 1'b0 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
 					LRUBits_Out <= {LRUBits[2],2'b11}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
-				else if(LRUBits[1:0] == 2'b10)begin //else if LRUBits[0] is 0 and LRUBits[1] is 1 
+				else if(LRUBits[1] == 1'b1 && LRUBits[0] == 1'b0)begin //else if LRUBits[0] is 0 and LRUBits[1] is 1 
 					LRUBits_Out <= {LRUBits[2],2'b01}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 01} ;
 				end
 				else if(LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //else if LRUBits[0] is 1 and LRUBits[2] is 0
@@ -294,11 +295,11 @@ module M68kAssociativeCacheController_Verilog (
 				// use the LRU bits to figure out which block in the line to replace
 				// then update the LRU bits and save the replacement number for later
 				// algorithm based on https://people.cs.clemson.edu/~mark/464/p_lru.txt
-				if (LRUBits[1:0] == 2'b00)begin //if LRUBits[0] and LRUBits[1] are both 0 {
+				if (LRUBits[1] == 1'b0 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0 {
 					ReplaceBlockNumberData <= 2'b00;//Set 2 bit ReplaceBlockNumberData to binary 00; // use block 0
 					LRUBits_Out <= {LRUBits[2],2'b11};//Set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11} ;
 				end
-				else if (LRUBits[1:0] == 2'b10)begin//else if LRUBits[0] is 0 and LRUBits[1] is 1 {
+				else if (LRUBits[1] == 1'b1 && LRUBits[0] == 1'b0)begin//else if LRUBits[0] is 0 and LRUBits[1] is 1 {
 					ReplaceBlockNumberData <= 2'b01; //Set 2 bit ReplaceBlockNumberData to binary 01; // use block 1
 					LRUBits_Out <= {LRUBits[2],2'b01};//Set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 01} ;
 				end
@@ -329,7 +330,7 @@ module M68kAssociativeCacheController_Verilog (
 			// in the line to give to 68k. Keep giving the 68k a Dtack and then wait for the end of the 68k read 
 			WordAddress <= AddressBusInFrom68k[3:1];
 			DtackTo68k_L <= 1'b0;
-			if(AS_L == 1'b1)begin
+			if(AS_L == 1'b0)begin // made a change here
 				NextState <= WaitForEndOfCacheRead;
 			end
 
@@ -408,7 +409,7 @@ module M68kAssociativeCacheController_Verilog (
 			DramSelectFromCache_L <= 1'b0;//Activate DramSelectFromCache_L; // keep reading from Dram
 			// burst counter should now be 0 when we first enter this state, as reset was synchronous
 			NextState <= BurstFill;
-			if(BurstCounter == 4'b1000)begin//if BurstCounter equals 8) // if we have read 8 words, it's time to stop
+			if(BurstCounter == 16'd8)begin//if BurstCounter equals 8) // if we have read 8 words, it's time to stop
 				NextState <= EndBurstFill;
 			end
 			else begin
