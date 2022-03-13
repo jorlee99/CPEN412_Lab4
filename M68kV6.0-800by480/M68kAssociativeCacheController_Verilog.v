@@ -280,10 +280,10 @@ module M68kAssociativeCacheController_Verilog (
 					LRUBits_Out <= {LRUBits[2],2'b01}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 01} ;
 				end
 				else if(LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //else if LRUBits[0] is 1 and LRUBits[2] is 0
-					LRUBits_Out  <= {1'b1,LRUBits[1],0}//set 3 bit LRUBits_Out to {1 concated with LRUBits[1] concated with 0};
+					LRUBits_Out  <= {1'b1,LRUBits[1],1'b0};//set 3 bit LRUBits_Out to {1 concated with LRUBits[1] concated with 0};
 				end
 				else begin
-					LRUBits_Out <= {1'b0,LRUBits[1],0};//set 3 bit LRUBits_Out to {0 concated with LRUBits[1] concated with 0};
+					LRUBits_Out <= {1'b0,LRUBits[1],1'b0};//set 3 bit LRUBits_Out to {0 concated with LRUBits[1] concated with 0};
 				end
 				// Update/Write new LRU bits back to cache
 				LRU_WE_L <= 1'b0; //Activate LRU_WE_L;
@@ -329,7 +329,7 @@ module M68kAssociativeCacheController_Verilog (
 			WordAddress <= AddressBusInFrom68k[3:1];
 			DtackTo68k_L <= 1'b0;
 			if(AS_L == 1'b1)begin
-				NextState <= WaitForEndOfCacheRead
+				NextState <= WaitForEndOfCacheRead;
 			end
 
 		end
@@ -346,7 +346,7 @@ module M68kAssociativeCacheController_Verilog (
 			// and stay in this state until a dram read command issued
 			DramSelectFromCache_L <= 1'b0; //Activate DramSelectFromCache_L; // keep kicking Dram controller
 			NextState <= ReadDataFromDramIntoCache;//NextState = ReadDataFromDramIntoCache ;
-			if(CAS_Dram_L == 1'b0 and RAS_Dram_L == 1'b1)begin//if CAS_Dram_L is 0 and RAS_Dram_L is 1 // if "read" command (not "refresh")
+			if(CAS_Dram_L == 1'b0 && RAS_Dram_L == 1'b1)begin//if CAS_Dram_L is 0 and RAS_Dram_L is 1 // if "read" command (not "refresh")
 				NextState <= CASDelay1; //NextState = CASDelay1 ; // move to next state
 			end
 			// Store the 68k's address bus in the Cache Tag to mark the fact we have the data at that address 
@@ -462,7 +462,7 @@ module M68kAssociativeCacheController_Verilog (
 				NextState <= Idle;//NextState = Idle ; // go to Idle state ending the Dram access
 			end
 			else begin
-				NextState <= WriteDataToDram//NextState = WriteDataToDram; // else stay here until the 68k finishes the write
+				NextState <= WriteDataToDram;//NextState = WriteDataToDram; // else stay here until the 68k finishes the write
 			end
 
 		end		

@@ -3195,8 +3195,8 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 1512 -224 1800 160)
-	(text "CachedDramController" (rect 5 0 139 19)(font "Intel Clear" (font_size 8)))
+	(rect 1488 -224 1776 160)
+	(text "AssociativeCachedDramController" (rect 5 0 205 19)(font "Intel Clear" (font_size 8)))
 	(text "inst" (rect 8 363 24 380)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
@@ -3376,30 +3376,37 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 288 288)
 		(output)
-		(text "Hit_H" (rect 0 0 34 19)(font "Intel Clear" (font_size 8)))
-		(text "Hit_H" (rect 233 283 267 302)(font "Intel Clear" (font_size 8)))
-		(line (pt 288 288)(pt 272 288))
+		(text "DataCacheWE_L[3..0]" (rect 0 0 127 19)(font "Intel Clear" (font_size 8)))
+		(text "DataCacheWE_L[3..0]" (rect 140 283 267 302)(font "Intel Clear" (font_size 8)))
+		(line (pt 288 288)(pt 272 288)(line_width 3))
 	)
 	(port
 		(pt 288 304)
 		(output)
-		(text "CacheDataWrite_L" (rect 0 0 109 19)(font "Intel Clear" (font_size 8)))
-		(text "CacheDataWrite_L" (rect 158 299 267 318)(font "Intel Clear" (font_size 8)))
-		(line (pt 288 304)(pt 272 304))
+		(text "TagCacheWE_L[3..0]" (rect 0 0 121 19)(font "Intel Clear" (font_size 8)))
+		(text "TagCacheWE_L[3..0]" (rect 146 299 267 318)(font "Intel Clear" (font_size 8)))
+		(line (pt 288 304)(pt 272 304)(line_width 3))
 	)
 	(port
 		(pt 288 320)
 		(output)
-		(text "CacheAddressWrite_L" (rect 0 0 129 19)(font "Intel Clear" (font_size 8)))
-		(text "CacheAddressWrite_L" (rect 138 315 267 334)(font "Intel Clear" (font_size 8)))
-		(line (pt 288 320)(pt 272 320))
+		(text "CacheDataOut[15..0]" (rect 0 0 123 19)(font "Intel Clear" (font_size 8)))
+		(text "CacheDataOut[15..0]" (rect 144 315 267 334)(font "Intel Clear" (font_size 8)))
+		(line (pt 288 320)(pt 272 320)(line_width 3))
 	)
 	(port
 		(pt 288 336)
 		(output)
-		(text "CacheDataOut[15..0]" (rect 0 0 123 19)(font "Intel Clear" (font_size 8)))
-		(text "CacheDataOut[15..0]" (rect 144 331 267 350)(font "Intel Clear" (font_size 8)))
+		(text "Valid_H[3..0]" (rect 0 0 77 19)(font "Intel Clear" (font_size 8)))
+		(text "Valid_H[3..0]" (rect 190 331 267 350)(font "Intel Clear" (font_size 8)))
 		(line (pt 288 336)(pt 272 336)(line_width 3))
+	)
+	(port
+		(pt 288 352)
+		(output)
+		(text "ValidHit_H[3..0]" (rect 0 0 95 19)(font "Intel Clear" (font_size 8)))
+		(text "ValidHit_H[3..0]" (rect 172 347 267 366)(font "Intel Clear" (font_size 8)))
+		(line (pt 288 352)(pt 272 352)(line_width 3))
 	)
 	(port
 		(pt 288 160)
@@ -4563,12 +4570,6 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "DataBusIn[15..0]" (rect 2290 240 2373 252)(font "Arial" ))
-	(pt 1200 256)
-	(pt 1952 256)
-	(bus)
-)
-(connector
 	(text "DataBusIn[15..8]" (rect 1850 1712 1933 1724)(font "Arial" ))
 	(pt 1776 1728)
 	(pt 1952 1728)
@@ -4756,10 +4757,6 @@ refer to the applicable agreement for further details.
 (connector
 	(pt 2080 1448)
 	(pt 2104 1448)
-)
-(connector
-	(pt 1176 -760)
-	(pt 1176 -192)
 )
 (connector
 	(text "SSN_O[0]" (rect 1858 2552 1907 2564)(font "Arial" ))
@@ -5312,123 +5309,6 @@ refer to the applicable agreement for further details.
 	(pt -200 424)
 )
 (connector
-	(pt 1512 -192)
-	(pt 1176 -192)
-)
-(connector
-	(pt 1512 -96)
-	(pt 1344 -96)
-)
-(connector
-	(pt 1344 -568)
-	(pt 1344 -96)
-)
-(connector
-	(pt 1344 -96)
-	(pt 1344 296)
-)
-(connector
-	(pt 1360 -48)
-	(pt 1512 -48)
-)
-(connector
-	(pt 1360 -520)
-	(pt 1360 -48)
-)
-(connector
-	(pt 1360 -48)
-	(pt 1360 280)
-)
-(connector
-	(pt 1328 -80)
-	(pt 1512 -80)
-)
-(connector
-	(pt 1328 -552)
-	(pt 1328 -80)
-)
-(connector
-	(pt 1328 -80)
-	(pt 1328 312)
-)
-(connector
-	(pt 1264 -64)
-	(pt 1512 -64)
-)
-(connector
-	(pt 1264 -536)
-	(pt 1264 -64)
-)
-(connector
-	(pt 1264 -64)
-	(pt 1264 328)
-)
-(connector
-	(text "DataBusOut[15..0]" (rect 1362 -128 1454 -116)(font "Arial" ))
-	(pt 1296 -112)
-	(pt 1512 -112)
-	(bus)
-)
-(connector
-	(pt 1296 -600)
-	(pt 1296 -112)
-	(bus)
-)
-(connector
-	(pt 1296 -112)
-	(pt 1296 240)
-	(bus)
-)
-(connector
-	(pt 1312 640)
-	(pt 1312 -144)
-)
-(connector
-	(pt 1160 640)
-	(pt 1312 640)
-)
-(connector
-	(pt 1312 640)
-	(pt 1424 640)
-)
-(connector
-	(pt 1312 -144)
-	(pt 1512 -144)
-)
-(connector
-	(text "Address[31..0]" (rect 1258 -144 1329 -132)(font "Arial" )(invisible))
-	(pt 1280 -128)
-	(pt 1512 -128)
-	(bus)
-)
-(connector
-	(pt 1280 -584)
-	(pt 1280 -128)
-	(bus)
-)
-(connector
-	(text "Address[31..0]" (rect 1264 241 1276 312)(font "Arial" )(vertical)(invisible))
-	(pt 1280 -128)
-	(pt 1280 224)
-	(bus)
-)
-(connector
-	(pt 1248 -664)
-	(pt 1248 -160)
-)
-(connector
-	(pt 576 -664)
-	(pt 1248 -664)
-)
-(connector
-	(pt 1248 -664)
-	(pt 1456 -664)
-)
-(connector
-	(pt 1248 -160)
-	(pt 1512 -160)
-)
-(connector
 	(pt 632 784)
 	(pt 632 168)
 )
@@ -5441,55 +5321,12 @@ refer to the applicable agreement for further details.
 	(pt 1920 168)
 )
 (connector
-	(pt 1800 -144)
-	(pt 2080 -144)
-)
-(connector
-	(pt 1800 -128)
-	(pt 2080 -128)
-)
-(connector
-	(pt 1800 -112)
-	(pt 2080 -112)
-)
-(connector
-	(pt 1800 -96)
-	(pt 2080 -96)
-	(bus)
-)
-(connector
-	(pt 1800 -80)
-	(pt 2080 -80)
-	(bus)
-)
-(connector
-	(pt 1800 -64)
-	(pt 2080 -64)
-	(bus)
-)
-(connector
 	(pt 1920 16)
 	(pt 1920 168)
 )
 (connector
 	(pt 1904 -48)
 	(pt 1904 424)
-)
-(connector
-	(pt 1800 -48)
-	(pt 1904 -48)
-)
-(connector
-	(pt 1904 -48)
-	(pt 2080 -48)
-)
-(connector
-	(pt 1800 -32)
-	(pt 2080 -32)
-)
-(connector
-	(pt 1800 -16)
-	(pt 2080 -16)
 )
 (connector
 	(text "DataBusIn[15..0]" (rect 2016 103 2028 186)(font "Arial" )(vertical)(invisible))
@@ -5506,20 +5343,6 @@ refer to the applicable agreement for further details.
 	(pt 2032 256)
 	(pt 2160 256)
 	(bus)
-)
-(connector
-	(text "DataBusIn[15..0]" (rect 1818 -8 1901 4)(font "Arial" ))
-	(pt 1800 0)
-	(pt 2032 0)
-	(bus)
-)
-(connector
-	(pt 1800 16)
-	(pt 1920 16)
-)
-(connector
-	(pt 1920 16)
-	(pt 2080 16)
 )
 (connector
 	(pt -544 -960)
@@ -5554,12 +5377,45 @@ refer to the applicable agreement for further details.
 	(pt 1160 -800)
 )
 (connector
-	(pt 1800 -176)
-	(pt 2080 -176)
+	(text "Clock45Mhz" (rect 1353 2295 1365 2354)(font "Arial" )(vertical))
+	(pt 1376 2328)
+	(pt 1376 2448)
 )
 (connector
-	(pt 1800 -160)
-	(pt 2080 -160)
+	(pt 1840 -256)
+	(pt 2080 -256)
+)
+(connector
+	(pt 1840 -256)
+	(pt 1840 -192)
+)
+(connector
+	(pt 1176 -760)
+	(pt 1176 -192)
+)
+(connector
+	(pt 1312 640)
+	(pt 1312 -144)
+)
+(connector
+	(pt 1248 -664)
+	(pt 1248 -160)
+)
+(connector
+	(pt 1160 640)
+	(pt 1312 640)
+)
+(connector
+	(pt 1312 640)
+	(pt 1424 640)
+)
+(connector
+	(pt 576 -664)
+	(pt 1248 -664)
+)
+(connector
+	(pt 1248 -664)
+	(pt 1456 -664)
 )
 (connector
 	(pt 1160 -800)
@@ -5570,25 +5426,176 @@ refer to the applicable agreement for further details.
 	(pt 1160 -176)
 )
 (connector
-	(text "Clock45Mhz" (rect 1353 2295 1365 2354)(font "Arial" )(vertical))
-	(pt 1376 2328)
-	(pt 1376 2448)
+	(pt 1488 -192)
+	(pt 1176 -192)
 )
 (connector
+	(pt 1488 -176)
 	(pt 1160 -176)
-	(pt 1512 -176)
 )
 (connector
-	(pt 1840 -256)
-	(pt 2080 -256)
+	(pt 1488 -160)
+	(pt 1248 -160)
 )
 (connector
-	(pt 1800 -192)
+	(pt 1488 -144)
+	(pt 1312 -144)
+)
+(connector
+	(text "Address[31..0]" (rect 1202 -144 1273 -132)(font "Arial" )(invisible))
+	(pt 1488 -128)
+	(pt 1280 -128)
+	(bus)
+)
+(connector
+	(pt 1280 -584)
+	(pt 1280 -128)
+	(bus)
+)
+(connector
+	(text "Address[31..0]" (rect 1264 241 1276 312)(font "Arial" )(vertical)(invisible))
+	(pt 1280 -128)
+	(pt 1280 224)
+	(bus)
+)
+(connector
+	(text "DataBusOut[15..0]" (rect 1306 -128 1398 -116)(font "Arial" ))
+	(pt 1488 -112)
+	(pt 1296 -112)
+	(bus)
+)
+(connector
+	(pt 1296 -600)
+	(pt 1296 -112)
+	(bus)
+)
+(connector
+	(pt 1296 -112)
+	(pt 1296 240)
+	(bus)
+)
+(connector
+	(pt 1488 -96)
+	(pt 1344 -96)
+)
+(connector
+	(pt 1344 -568)
+	(pt 1344 -96)
+)
+(connector
+	(pt 1344 -96)
+	(pt 1344 296)
+)
+(connector
+	(pt 1488 -80)
+	(pt 1328 -80)
+)
+(connector
+	(pt 1328 -552)
+	(pt 1328 -80)
+)
+(connector
+	(pt 1328 -80)
+	(pt 1328 312)
+)
+(connector
+	(pt 1488 -64)
+	(pt 1264 -64)
+)
+(connector
+	(pt 1264 -536)
+	(pt 1264 -64)
+)
+(connector
+	(pt 1264 -64)
+	(pt 1264 328)
+)
+(connector
+	(pt 1488 -48)
+	(pt 1360 -48)
+)
+(connector
+	(pt 1360 -520)
+	(pt 1360 -48)
+)
+(connector
+	(pt 1360 -48)
+	(pt 1360 280)
+)
+(connector
+	(pt 1776 16)
+	(pt 1920 16)
+)
+(connector
+	(pt 1920 16)
+	(pt 2080 16)
+)
+(connector
+	(text "DataBusIn[15..0]" (rect 1818 -8 1901 4)(font "Arial" ))
+	(pt 1776 0)
+	(pt 2032 0)
+	(bus)
+)
+(connector
+	(pt 1776 -16)
+	(pt 2080 -16)
+)
+(connector
+	(pt 1776 -32)
+	(pt 2080 -32)
+)
+(connector
+	(pt 1776 -48)
+	(pt 1904 -48)
+)
+(connector
+	(pt 1904 -48)
+	(pt 2080 -48)
+)
+(connector
+	(pt 1776 -64)
+	(pt 2080 -64)
+	(bus)
+)
+(connector
+	(pt 1776 -80)
+	(pt 2080 -80)
+	(bus)
+)
+(connector
+	(pt 1776 -96)
+	(pt 2080 -96)
+	(bus)
+)
+(connector
+	(pt 1776 -112)
+	(pt 2080 -112)
+)
+(connector
+	(pt 1776 -128)
+	(pt 2080 -128)
+)
+(connector
+	(pt 1776 -144)
+	(pt 2080 -144)
+)
+(connector
+	(pt 1776 -160)
+	(pt 2080 -160)
+)
+(connector
+	(pt 1776 -176)
+	(pt 2080 -176)
+)
+(connector
+	(pt 1776 -192)
 	(pt 1840 -192)
 )
 (connector
-	(pt 1840 -256)
-	(pt 1840 -192)
+	(text "<<__$DEF_ALIAS7691>>" (rect 2290 240 2413 252)(font "Arial" )(invisible))
+	(pt 1200 256)
+	(pt 1952 256)
+	(bus)
 )
 (junction (pt 1280 224))
 (junction (pt 1376 224))

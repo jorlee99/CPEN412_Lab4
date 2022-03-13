@@ -375,6 +375,7 @@ set_location_assignment PIN_AK29 -to LCD_BLON
 set_location_assignment PIN_J12 -to CanBusSelect_H
 set_location_assignment PIN_AG26 -to LCD_Contrast_DE1
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name VERILOG_FILE M68kAssociativeCacheController_Verilog.v
 set_global_assignment -name BDF_FILE AssociativeDramCache.bdf
 set_global_assignment -name VHDL_FILE CacheEnabledDramController.vhd
 set_global_assignment -name VERILOG_FILE M68kCacheController_Verilog.v
