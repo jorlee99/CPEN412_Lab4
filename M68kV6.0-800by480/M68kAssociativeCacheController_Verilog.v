@@ -201,7 +201,7 @@ module M68kAssociativeCacheController_Verilog (
 		else if(CurrentState == InvalidateCache) begin	  						
 			
 			// burst counter should now be 0 when we first enter this state, as it was reset in state above
-			if(BurstCounter == 8) 														// if we have done all cache lines
+			if(BurstCounter == 16'd128) 														// if we have done all cache lines
 				NextState 						<= Idle;
 			
 			else begin
@@ -316,7 +316,7 @@ module M68kAssociativeCacheController_Verilog (
 					LRUBits_Out <= {LRUBits[6:4],1'b1,LRUBits[2],1'b1,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
 				else if (LRUBits[3] == 1'b1 && LRUBits[1] == 1'b0 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
-					ReplaceBlockNumberData <= 3'b001
+					ReplaceBlockNumberData <= 3'b001;
 					LRUBits_Out <= {LRUBits[6:4],1'b0,LRUBits[2],1'b1,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
 
