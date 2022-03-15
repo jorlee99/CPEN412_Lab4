@@ -38,11 +38,11 @@ module Tag_Data_Associative (
 	wren,
 	q);
 
-	input	[2:0]  address;
+	input	[6:0]  address;
 	input	  clock;
-	input	[24:0]  data;
+	input	[20:0]  data;
 	input	  wren;
-	output	[24:0]  q;
+	output	[20:0]  q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
@@ -76,7 +76,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
 // Retrieval info: PRIVATE: MIFfilename STRING ""
-// Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "8"
+// Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "128"
 // Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 // Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_PORT_A NUMERIC "3"
 // Retrieval info: PRIVATE: RegAddr NUMERIC "1"
@@ -86,8 +86,8 @@ endmodule
 // Retrieval info: PRIVATE: SingleClock NUMERIC "1"
 // Retrieval info: PRIVATE: UseDQRAM NUMERIC "1"
 // Retrieval info: PRIVATE: WRCONTROL_ACLR_A NUMERIC "0"
-// Retrieval info: PRIVATE: WidthAddr NUMERIC "3"
-// Retrieval info: PRIVATE: WidthData NUMERIC "25"
+// Retrieval info: PRIVATE: WidthAddr NUMERIC "7"
+// Retrieval info: PRIVATE: WidthData NUMERIC "21"
 // Retrieval info: PRIVATE: rden NUMERIC "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
@@ -95,25 +95,25 @@ endmodule
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=NO"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
-// Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "8"
+// Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "128"
 // Retrieval info: CONSTANT: OPERATION_MODE STRING "SINGLE_PORT"
 // Retrieval info: CONSTANT: OUTDATA_ACLR_A STRING "NONE"
 // Retrieval info: CONSTANT: OUTDATA_REG_A STRING "UNREGISTERED"
 // Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "FALSE"
 // Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_PORT_A STRING "NEW_DATA_NO_NBE_READ"
-// Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "3"
-// Retrieval info: CONSTANT: WIDTH_A NUMERIC "25"
+// Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "7"
+// Retrieval info: CONSTANT: WIDTH_A NUMERIC "21"
 // Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
-// Retrieval info: USED_PORT: address 0 0 3 0 INPUT NODEFVAL "address[2..0]"
+// Retrieval info: USED_PORT: address 0 0 7 0 INPUT NODEFVAL "address[6..0]"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT VCC "clock"
-// Retrieval info: USED_PORT: data 0 0 25 0 INPUT NODEFVAL "data[24..0]"
-// Retrieval info: USED_PORT: q 0 0 25 0 OUTPUT NODEFVAL "q[24..0]"
+// Retrieval info: USED_PORT: data 0 0 21 0 INPUT NODEFVAL "data[20..0]"
+// Retrieval info: USED_PORT: q 0 0 21 0 OUTPUT NODEFVAL "q[20..0]"
 // Retrieval info: USED_PORT: wren 0 0 0 0 INPUT NODEFVAL "wren"
-// Retrieval info: CONNECT: @address_a 0 0 3 0 address 0 0 3 0
+// Retrieval info: CONNECT: @address_a 0 0 7 0 address 0 0 7 0
 // Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
-// Retrieval info: CONNECT: @data_a 0 0 25 0 data 0 0 25 0
+// Retrieval info: CONNECT: @data_a 0 0 21 0 data 0 0 21 0
 // Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
-// Retrieval info: CONNECT: q 0 0 25 0 @q_a 0 0 25 0
+// Retrieval info: CONNECT: q 0 0 21 0 @q_a 0 0 21 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL Tag_Data_Associative.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL Tag_Data_Associative.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL Tag_Data_Associative.cmp FALSE

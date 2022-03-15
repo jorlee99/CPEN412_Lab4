@@ -23,7 +23,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -88 168 104 184)
 	(text "INPUT" (rect 149 0 177 10)(font "Arial" (font_size 6)))
-	(text "WordAddress[2..0]" (rect 5 0 98 12)(font "Arial" ))
+	(text "WordAddress[2..0]" (rect 5 0 97 12)(font "Arial" ))
 	(pt 192 8)
 	(drawing
 		(line (pt 108 12)(pt 133 12))
@@ -39,7 +39,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -64 184 104 200)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "DataIn[15..0]" (rect 5 0 66 17)(font "Intel Clear" ))
+	(text "DataIn[15..0]" (rect 5 0 65 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -55,7 +55,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -72 200 104 216)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "DataCacheWE_L" (rect 5 0 86 17)(font "Intel Clear" ))
+	(text "DataCacheWE_L" (rect 5 0 85 17)(font "Intel Clear" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -71,7 +71,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -80 216 104 232)
 	(text "INPUT" (rect 141 0 169 10)(font "Arial" (font_size 6)))
-	(text "DataCacheUDS_L" (rect 5 0 89 17)(font "Intel Clear" ))
+	(text "DataCacheUDS_L" (rect 5 0 88 17)(font "Intel Clear" ))
 	(pt 184 8)
 	(drawing
 		(line (pt 100 12)(pt 125 12))
@@ -87,7 +87,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -72 232 104 248)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "DataCacheLDS_L" (rect 5 0 88 17)(font "Intel Clear" ))
+	(text "DataCacheLDS_L" (rect 5 0 87 17)(font "Intel Clear" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -101,25 +101,9 @@ refer to the applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -88 368 104 384)
-	(text "INPUT" (rect 149 0 177 10)(font "Arial" (font_size 6)))
-	(text "TagAddressIn[24..0]" (rect 5 0 99 17)(font "Intel Clear" ))
-	(pt 192 8)
-	(drawing
-		(line (pt 108 12)(pt 133 12))
-		(line (pt 108 4)(pt 133 4))
-		(line (pt 137 8)(pt 192 8))
-		(line (pt 108 12)(pt 108 4))
-		(line (pt 133 4)(pt 137 8))
-		(line (pt 133 12)(pt 137 8))
-	)
-	(text "VCC" (rect 152 7 172 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
 	(rect -72 384 104 400)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "TagCacheWE_L" (rect 5 0 81 17)(font "Intel Clear" ))
+	(text "TagCacheWE_L" (rect 5 0 80 17)(font "Intel Clear" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -135,7 +119,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -64 440 104 456)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ValidBitIn" (rect 5 0 52 17)(font "Intel Clear" ))
+	(text "ValidBitIn" (rect 5 0 51 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -151,23 +135,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -64 456 104 472)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ValidWE_L" (rect 5 0 59 17)(font "Intel Clear" ))
-	(pt 168 8)
-	(drawing
-		(line (pt 84 12)(pt 109 12))
-		(line (pt 84 4)(pt 109 4))
-		(line (pt 113 8)(pt 168 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 109 4)(pt 113 8))
-		(line (pt 109 12)(pt 113 8))
-	)
-	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
-	(rect -64 472 104 488)
-	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "Index[2..0]" (rect 5 0 54 17)(font "Intel Clear" ))
+	(text "ValidWE_L" (rect 5 0 58 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -183,7 +151,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -64 488 104 504)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "Clock" (rect 5 0 34 12)(font "Arial" ))
+	(text "Clock" (rect 5 0 33 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -194,6 +162,38 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -64 472 104 488)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "Index[6..0]" (rect 5 0 54 17)(font "Intel Clear" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -88 368 104 384)
+	(text "INPUT" (rect 149 0 177 10)(font "Arial" (font_size 6)))
+	(text "TagAddressIn[20..0]" (rect 5 0 99 17)(font "Intel Clear" ))
+	(pt 192 8)
+	(drawing
+		(line (pt 108 12)(pt 133 12))
+		(line (pt 108 4)(pt 133 4))
+		(line (pt 137 8)(pt 192 8))
+		(line (pt 108 12)(pt 108 4))
+		(line (pt 133 4)(pt 137 8))
+		(line (pt 133 12)(pt 137 8))
+	)
+	(text "VCC" (rect 152 7 172 17)(font "Arial" (font_size 6)))
 )
 (pin
 	(output)
@@ -246,7 +246,7 @@ refer to the applicable agreement for further details.
 (symbol
 	(rect 208 416 416 544)
 	(text "ValidBit_Associative" (rect 5 0 125 19)(font "Intel Clear" (font_size 8)))
-	(text "inst" (rect 8 107 24 124)(font "Intel Clear" ))
+	(text "inst1" (rect 8 107 30 124)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -264,8 +264,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "Index[2..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
-		(text "Index[2..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
+		(text "Index[6..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
+		(text "Index[6..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
@@ -289,12 +289,12 @@ refer to the applicable agreement for further details.
 (symbol
 	(rect 520 408 784 536)
 	(text "TagMemory_Associative" (rect 5 0 148 19)(font "Intel Clear" (font_size 8)))
-	(text "inst1" (rect 8 107 30 124)(font "Intel Clear" ))
+	(text "inst2" (rect 8 107 30 124)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "TagDataIn[24..0]" (rect 0 0 100 19)(font "Intel Clear" (font_size 8)))
-		(text "TagDataIn[24..0]" (rect 21 27 121 46)(font "Intel Clear" (font_size 8)))
+		(text "TagDataIn[20..0]" (rect 0 0 100 19)(font "Intel Clear" (font_size 8)))
+		(text "TagDataIn[20..0]" (rect 21 27 121 46)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
@@ -307,8 +307,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "Index[2..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
-		(text "Index[2..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
+		(text "Index[6..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
+		(text "Index[6..0]" (rect 21 59 83 78)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
@@ -321,8 +321,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 264 32)
 		(output)
-		(text "TagDataOut[24..0]" (rect 0 0 110 19)(font "Intel Clear" (font_size 8)))
-		(text "TagDataOut[24..0]" (rect 133 27 243 46)(font "Intel Clear" (font_size 8)))
+		(text "TagDataOut[20..0]" (rect 0 0 110 19)(font "Intel Clear" (font_size 8)))
+		(text "TagDataOut[20..0]" (rect 133 27 243 46)(font "Intel Clear" (font_size 8)))
 		(line (pt 264 32)(pt 248 32)(line_width 3))
 	)
 	(drawing
@@ -330,9 +330,38 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
+	(rect 856 392 1056 472)
+	(text "AddressComparator_Associative" (rect 5 0 166 12)(font "Arial" ))
+	(text "inst3" (rect 8 64 31 76)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "AddressBus[20..0]" (rect 0 0 90 12)(font "Arial" ))
+		(text "AddressBus[20..0]" (rect 21 27 111 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "TagData[20..0]" (rect 0 0 73 12)(font "Arial" ))
+		(text "TagData[20..0]" (rect 21 43 94 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 200 32)
+		(output)
+		(text "Hit_H" (rect 0 0 28 12)(font "Arial" ))
+		(text "Hit_H" (rect 156 27 184 39)(font "Arial" ))
+		(line (pt 200 32)(pt 184 32))
+	)
+	(drawing
+		(rectangle (rect 16 16 184 64))
+	)
+)
+(symbol
 	(rect 1200 392 1416 552)
 	(text "CacheData_Associative" (rect 5 0 141 19)(font "Intel Clear" (font_size 8)))
-	(text "inst3" (rect 8 139 30 156)(font "Intel Clear" ))
+	(text "inst4" (rect 8 139 30 156)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -343,8 +372,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "Index[2..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
-		(text "Index[2..0]" (rect 21 43 83 62)(font "Intel Clear" (font_size 8)))
+		(text "Index[6..0]" (rect 0 0 62 19)(font "Intel Clear" (font_size 8)))
+		(text "Index[6..0]" (rect 21 43 83 62)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 48)(pt 16 48)(line_width 3))
 	)
 	(port
@@ -396,7 +425,7 @@ refer to the applicable agreement for further details.
 (symbol
 	(rect 1304 264 1368 312)
 	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
-	(text "inst4" (rect 3 37 25 54)(font "Intel Clear" ))
+	(text "inst5" (rect 3 37 25 54)(font "Intel Clear" ))
 	(port
 		(pt 0 16)
 		(input)
@@ -423,35 +452,6 @@ refer to the applicable agreement for further details.
 		(line (pt 14 37)(pt 31 37))
 		(line (pt 14 12)(pt 14 37))
 		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
-	)
-)
-(symbol
-	(rect 856 392 1056 472)
-	(text "AddressComparator_Associative" (rect 5 0 166 12)(font "Arial" ))
-	(text "inst5" (rect 8 64 30 81)(font "Intel Clear" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "AddressBus[24..0]" (rect 0 0 90 12)(font "Arial" ))
-		(text "AddressBus[24..0]" (rect 21 27 111 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32)(line_width 3))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "TagData[24..0]" (rect 0 0 73 12)(font "Arial" ))
-		(text "TagData[24..0]" (rect 21 43 94 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48)(line_width 3))
-	)
-	(port
-		(pt 200 32)
-		(output)
-		(text "Hit_H" (rect 0 0 28 12)(font "Arial" ))
-		(text "Hit_H" (rect 156 27 184 39)(font "Arial" ))
-		(line (pt 200 32)(pt 184 32))
-	)
-	(drawing
-		(rectangle (rect 16 16 184 64))
 	)
 )
 (connector
@@ -492,21 +492,6 @@ refer to the applicable agreement for further details.
 (connector
 	(pt 496 376)
 	(pt 816 376)
-	(bus)
-)
-(connector
-	(pt 856 440)
-	(pt 784 440)
-	(bus)
-)
-(connector
-	(pt 856 424)
-	(pt 816 424)
-	(bus)
-)
-(connector
-	(pt 816 376)
-	(pt 816 424)
 	(bus)
 )
 (connector
@@ -657,16 +642,8 @@ refer to the applicable agreement for further details.
 	(pt 1136 224)
 )
 (connector
-	(pt 1056 424)
-	(pt 1088 424)
-)
-(connector
 	(pt 1304 296)
 	(pt 1088 296)
-)
-(connector
-	(pt 1088 296)
-	(pt 1088 424)
 )
 (connector
 	(pt 440 280)
@@ -699,6 +676,29 @@ refer to the applicable agreement for further details.
 (connector
 	(pt 1416 424)
 	(pt 1464 424)
+	(bus)
+)
+(connector
+	(pt 816 424)
+	(pt 856 424)
+	(bus)
+)
+(connector
+	(pt 816 376)
+	(pt 816 424)
+	(bus)
+)
+(connector
+	(pt 1088 424)
+	(pt 1056 424)
+)
+(connector
+	(pt 1088 296)
+	(pt 1088 424)
+)
+(connector
+	(pt 784 440)
+	(pt 856 440)
 	(bus)
 )
 (junction (pt 496 376))

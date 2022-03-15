@@ -266,7 +266,7 @@ module M68kAssociativeCacheController_Verilog (
 			// if any Block for the Set produces a valid cache hit, i.e. we found the data we are after.
 			// test each of the 4 blocks to see if one of them has both a cache hit and a valid bit set. 
 			// That will indentify the block containing the data we can use and give to the cpu
-			if(Valid_H[3:0] != 4'b0000)begin //if any of the ValidHit_H[3..0] bits reports a valid hit {
+			if(ValidHit_H[3:0] != 4'b0000)begin //if any of the ValidHit_H[3..0] bits reports a valid hit {
 				// if we have the data in the Cache give it to the 68k and return to idle state
 				// remember defaults:DataBusOutTo68k = DataBusInFromCache,AddressBusOutToDram = AddressBusInFrom68k, 
 				// also remember the cache block DATA MUX is automatically set to the block producing the valid Hit
