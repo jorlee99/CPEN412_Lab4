@@ -5,8 +5,7 @@
 // separate upper and lowe data stobes for individual byte and also 16 bit word access
 //
 // Copyright PJ Davies August 2017
-// Check
-// you can check out the intermediate changes made by looking for this comment: changed here for 128 line
+// This is the 8way version of the state machine
 ///////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -40,20 +39,20 @@ module M68kAssociativeCacheController_Verilog (
 		output reg DtackTo68k_L,											// Dtack back to 68k at end of operation
 		
 		// Cache memory write signals
-		output reg unsigned [3:0] TagCache_WE_L,						// 4 bits for 4 blocks to store an address in Cache
-		output reg unsigned [3:0] DataCache_WE_L,						// 4 bits for 4 blocks to store data in Cache
-		output reg unsigned [3:0] ValidBit_WE_L,						// 4 bits for 4 blocks to store a valid bit
+		output reg unsigned [7:0] TagCache_WE_L,						// 4 bits for 4 blocks to store an address in Cache
+		output reg unsigned [7:0] DataCache_WE_L,						// 4 bits for 4 blocks to store data in Cache
+		output reg unsigned [7:0] ValidBit_WE_L,						// 4 bits for 4 blocks to store a valid bit
 		
 		output reg unsigned [31:0] AddressBusOutToDramController,	// address bus from Cache to Dram controller
-		output reg unsigned [20:0] TagDataOut,								// changed for 128 line cache
+		output reg unsigned [20:0] TagDataOut,								// 25 bit address to store in the tag Cache
 		output reg unsigned [2:0] WordAddress,								// upto 8 words in a Cache line
 		output reg ValidBitOut_H,												// indicates the cache line is valid
-		output reg unsigned [6:0] Index,										// changed for 128 line cache
+		output reg unsigned [6:0] Index,										// 3 bit Line for 8 
 	
-		input unsigned [3:0] ValidHit_H,									// indicates if any block in valid and a hit for the set
-		input unsigned [3:0] Valid_H,										// indicates if any block in valid
-		input unsigned [2:0] LRUBits_In,	
-		output reg unsigned [2:0] LRUBits_Out,	
+		input unsigned [7:0] ValidHit_H,									// indicates if any block in valid and a hit for the set
+		input unsigned [7:0] Valid_H,										// indicates if any block in valid
+		input unsigned [6:0] LRUBits_In,	
+		output reg unsigned [6:0] LRUBits_Out,	
 		output reg LRU_WE_L,
 
 		// debugging only
@@ -86,13 +85,13 @@ module M68kAssociativeCacheController_Verilog (
 	reg BurstCounterReset_L;								// reset for the above counter
 	
 	// 2 bit register to hold the block number and a signla to store it 
-	reg unsigned [1:0] ReplaceBlockNumber;				// register to hold the number of the block/way where new cache data will be loaded
-	reg unsigned [1:0] ReplaceBlockNumberData;		// data to store in the above register
+	reg unsigned [2:0] ReplaceBlockNumber;				// register to hold the number of the block/way where new cache data will be loaded
+	reg unsigned [2:0] ReplaceBlockNumberData;		// data to store in the above register
 	reg LoadReplacementBlockNumber_H;					// signal to load the replceblocknumber with the new data above
 	
 	// signals for the least recently used bits utilised in cache replacement policy
 	reg  LRUBits_Load_H;
-	reg  unsigned [2:0]  LRUBits;
+	reg  unsigned [6:0]  LRUBits;
 
 	
 	
@@ -160,8 +159,8 @@ module M68kAssociativeCacheController_Verilog (
 		AddressBusOutToDramController[3:1]	<= 3'b000;								// all reads to Dram have lower 3 address lines set to 0 for a Cache line regardless of 68k address
 		AddressBusOutToDramController[0] 	<= 0;										// to avoid inferring a latch for this bit
 		
-		TagDataOut							<= AddressBusInFrom68k[31:11];				// changed here for 128 line 20..0
-		Index									<= AddressBusInFrom68k[10:4];				// changed here for 128 line 6..0
+		TagDataOut							<= AddressBusInFrom68k[31:11];				// tag is 25 bits
+		Index									<= AddressBusInFrom68k[10:4];				// cache Line is 3 bits for 8 Lines 4 way cache
 		
 		UDS_DramController_L				<= UDS_L;
 		LDS_DramController_L	   		<= LDS_L;
@@ -169,18 +168,18 @@ module M68kAssociativeCacheController_Verilog (
 		AS_DramController_L				<= AS_L;
 		
 		DtackTo68k_L						<= 1;												// don't supply until we are ready
-		TagCache_WE_L 						<= 4'b1111;										// don't write Cache address to any block
-		DataCache_WE_L 					<= 4'b1111;										// don't write Cache data to any block
-		ValidBit_WE_L						<= 4'b1111;										// don't write valid data to any block
+		TagCache_WE_L 						<= 8'b11111111;										// don't write Cache address to any block
+		DataCache_WE_L 					<= 8'b11111111;										// don't write Cache data to any block
+		ValidBit_WE_L						<= 8'b11111111;										// don't write valid data to any block
 		ValidBitOut_H						<= 0;												// line invalid
 		DramSelectFromCache_L 			<= 1;												// don't give the Dram controller a select signal since we might not always want to cycle the Dram if we have a hit during a read
 		WordAddress							<= 3'b000;										// default is byte 0 in 8 byte Cache line	
 		
 		BurstCounterReset_L 				<= 1;												// default is that burst counter can run (and wrap around if needed), we'll control when to reset it		
 		
-		ReplaceBlockNumberData 			<= 2'b00;			
+		ReplaceBlockNumberData 			<= 3'b000;			
 		LoadReplacementBlockNumber_H 	<= 0 ;											// don't latch by default
-		LRUBits_Out							<= 3'b000;
+		LRUBits_Out							<= 7'b0000000;
 		LRU_WE_L								<= 1;												// dont write	
 		LRUBits_Load_H						<= 0;
 		
@@ -202,23 +201,23 @@ module M68kAssociativeCacheController_Verilog (
 		else if(CurrentState == InvalidateCache) begin	  						
 			
 			// burst counter should now be 0 when we first enter this state, as it was reset in state above
-			if(BurstCounter == 16'd128) 												// changed here for 128 line if we have done all cache lines
+			if(BurstCounter == 16'd128) 														// if we have done all cache lines
 				NextState 						<= Idle;
 			
 			else begin
 				NextState						<= InvalidateCache;					// assume we stay here
-				Index	 							<= BurstCounter[6:0];				// changed here for 128 line 3 bit Line address for Index for 8 set/lines of cache
+				Index	 							<= BurstCounter[6:0];				// 3 bit Line address for Index for 8 set/lines of cache
 				
 				// clear the validity bits for each cache
 				ValidBitOut_H 					<=	0;		
-				ValidBit_WE_L					<= 4'b0000;
+				ValidBit_WE_L					<= 8'b00000000;
 				
 				// clear the address tags for each cache set
-				TagDataOut						<= 21'b000000000000000000000;	 // changed here for 128 line
-				TagCache_WE_L					<= 4'b0000;							// clear all tag bits in each Line
+				TagDataOut						<= 21'b0000000000000000000000000;	
+				TagCache_WE_L					<= 8'b00000000;							// clear all tag bits in each Line
 				
 				// clear the LRU bits for each cache Line
-				LRUBits_Out						<= 3'b000;
+				LRUBits_Out						<= 7'b0000000;
 				LRU_WE_L							<= 0;
 			end
 		end
@@ -227,7 +226,7 @@ module M68kAssociativeCacheController_Verilog (
 // Main IDLE state: 
 ///////////////////////////////////////////////
 
-		else if(CurrentState == Idle) begin									// if we are in the idle state				
+		else if(CurrentState == Idle) begin//change									// if we are in the idle state				
 			if(AS_L == 1'b0 && DramSelect68k_H == 1'b1) begin //if AS_L is active and DramSelect68_H  is active {
 				// update LRU bits 
 				// first we have to read LRU bits into the controller based on the selected Line 
@@ -244,10 +243,10 @@ module M68kAssociativeCacheController_Verilog (
 					// if we are writing, and data is already in the cache (a hit), we should invalidate that block/line
 					// so set the ValidBitOut_H to 0 in preparation for a write to the Valid bit if cache hit occurs
 					ValidBitOut_H <= 1'b0; // ValidBitOut_H = 0;
-					// if(ValidHit_H[3:0]  != 4'b0000)begin //if (any of the 4 ValidHit_H[3..0] bits are 1) // (indicating a hit for the block)
+					// if(ValidHit_H  != 4'b0000)begin //if (any of the 4 ValidHit_H[3..0] bits are 1) // (indicating a hit for the block)
 					// 	ValidBit_WE_L <= !ValidHit_H[3:0] ; //Activate the single corresponding ValidBit_WE_L to invalidate that line
 					// end
-					ValidBit_WE_L <= !ValidHit_H[3:0]; // made a change here
+					ValidBit_WE_L <= !ValidHit_H[7:0]; // made a change here
 					// writes bypass the cache so start the dram controller to perform the write		
 					DramSelectFromCache_L <= 1'b0;
 					NextState <= WriteDataToDram;
@@ -261,13 +260,13 @@ module M68kAssociativeCacheController_Verilog (
 // update the Least Recently Used Bits (LRUBits)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		else if(CurrentState == CheckForCacheHit) begin				// we are looking for a Cache hit			
+		else if(CurrentState == CheckForCacheHit) begin	//change			// we are looking for a Cache hit			
 			UDS_DramController_L <= 1'b0; // activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram 
 			LDS_DramController_L <= 1'b0;// regardless of what 68k asks
 			// if any Block for the Set produces a valid cache hit, i.e. we found the data we are after.
 			// test each of the 4 blocks to see if one of them has both a cache hit and a valid bit set. 
 			// That will indentify the block containing the data we can use and give to the cpu
-			if(ValidHit_H[3:0] != 4'b0000)begin //if any of the ValidHit_H[3..0] bits reports a valid hit {
+			if(ValidHit_H[7:0] != 8'b00000000)begin //if any of the ValidHit_H[3..0] bits reports a valid hit {
 				// if we have the data in the Cache give it to the 68k and return to idle state
 				// remember defaults:DataBusOutTo68k = DataBusInFromCache,AddressBusOutToDram = AddressBusInFrom68k, 
 				// also remember the cache block DATA MUX is automatically set to the block producing the valid Hit
@@ -276,17 +275,33 @@ module M68kAssociativeCacheController_Verilog (
 				WordAddress <= AddressBusInFrom68k[3:1]; //WordAddress = AddressBusInFrom68k[3..1];
 				DtackTo68k_L <= 1'b0; //Activate DtackTo68k_L 
 				NextState <= WaitForEndOfCacheRead; //NextState = WaitForEndOfCacheRead;
-				if (LRUBits[1:0] == 2'b00)begin //if LRUBits[0] and LRUBits[1] are both 0
-					LRUBits_Out <= {LRUBits[2],2'b11}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+
+				if (LRUBits[3] == 1'b0 && LRUBits[1] == 1'b0 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {LRUBits[6:4],1'b1,LRUBits[2],1'b1,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
-				else if(LRUBits[1:0] == 2'b10)begin //else if LRUBits[0] is 0 and LRUBits[1] is 1 
-					LRUBits_Out <= {LRUBits[2],2'b01}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 01} ;
+				else if (LRUBits[3] == 1'b1 && LRUBits[1] == 1'b0 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {LRUBits[6:4],1'b0,LRUBits[2],1'b1,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
-				else if(LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //else if LRUBits[0] is 1 and LRUBits[2] is 0
-					LRUBits_Out  <= {1'b1,LRUBits[1],1'b0};//set 3 bit LRUBits_Out to {1 concated with LRUBits[1] concated with 0};
+
+				else if (LRUBits[4] == 1'b0 && LRUBits[1] == 1'b1 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {LRUBits[6:5],1'b1,LRUBits[3:2],1'b0,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
-				else begin
-					LRUBits_Out <= {1'b0,LRUBits[1],1'b0};//set 3 bit LRUBits_Out to {0 concated with LRUBits[1] concated with 0};
+				else if (LRUBits[4] == 1'b1 && LRUBits[1] == 1'b1 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {LRUBits[6:5],1'b0,LRUBits[3:2],1'b0,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+
+				else if (LRUBits[5] == 1'b0 && LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {LRUBits[6],1'b1,LRUBits[4:3],1'b1,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+				else if (LRUBits[5] == 1'b1 && LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {LRUBits[6],1'b0,LRUBits[4:3],1'b1,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+
+				else if (LRUBits[6] == 1'b0 && LRUBits[2] == 1'b1 && LRUBits[0] == 1'b1)begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {1'b1,LRUBits[5:3],1'b0,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+				else begin //if LRUBits[0] and LRUBits[1] are both 0
+					LRUBits_Out <= {1'b0,LRUBits[5:3],1'b0,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
 				// Update/Write new LRU bits back to cache
 				LRU_WE_L <= 1'b0; //Activate LRU_WE_L;
@@ -296,22 +311,42 @@ module M68kAssociativeCacheController_Verilog (
 				// use the LRU bits to figure out which block in the line to replace
 				// then update the LRU bits and save the replacement number for later
 				// algorithm based on https://people.cs.clemson.edu/~mark/464/p_lru.txt
-				if (LRUBits[1:0] == 2'b00)begin //if LRUBits[0] and LRUBits[1] are both 0 {
-					ReplaceBlockNumberData <= 2'b00;//Set 2 bit ReplaceBlockNumberData to binary 00; // use block 0
-					LRUBits_Out <= {LRUBits[2],2'b11};//Set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11} ;
+				if (LRUBits[3] == 1'b0 && LRUBits[1] == 1'b0 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b000;
+					LRUBits_Out <= {LRUBits[6:4],1'b1,LRUBits[2],1'b1,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
-				else if (LRUBits[1:0] == 2'b10)begin//else if LRUBits[0] is 0 and LRUBits[1] is 1 {
-					ReplaceBlockNumberData <= 2'b01; //Set 2 bit ReplaceBlockNumberData to binary 01; // use block 1
-					LRUBits_Out <= {LRUBits[2],2'b01};//Set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 01} ;
+				else if (LRUBits[3] == 1'b1 && LRUBits[1] == 1'b0 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b001;
+					LRUBits_Out <= {LRUBits[6:4],1'b0,LRUBits[2],1'b1,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
-				else if (LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //else if LRUBits[0] is 1 and LRUBits[2] is 0 {
-					ReplaceBlockNumberData <= 2'b10; //Set 2 bit ReplaceBlockNumberData to binary 10; // use block 2
-					LRUBits_Out <= {1'b1,LRUBits[1],1'b0}; //Set 3 bit LRUBits_Out to {1 concated with LRUBits[1] concated with 0} ;
+
+				else if (LRUBits[4] == 1'b0 && LRUBits[1] == 1'b1 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b010;
+					LRUBits_Out <= {LRUBits[6:5],1'b1,LRUBits[3:2],1'b0,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
-				else begin
-					ReplaceBlockNumberData <= 2'b11;//Set 2 bit ReplaceBlockNumberData to binary 11; // use block 3
-					LRUBits_Out <= {1'b0,LRUBits[1],1'b0};//Set 3 bit LRUBits_Out to {0 concated wit LRUBits[1] concated with 0} ;
+				else if (LRUBits[4] == 1'b1 && LRUBits[1] == 1'b1 && LRUBits[0] == 1'b0)begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b011;
+					LRUBits_Out <= {LRUBits[6:5],1'b0,LRUBits[3:2],1'b0,1'b1}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
 				end
+
+				else if (LRUBits[5] == 1'b0 && LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b100;
+					LRUBits_Out <= {LRUBits[6],1'b1,LRUBits[4:3],1'b1,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+				else if (LRUBits[5] == 1'b1 && LRUBits[2] == 1'b0 && LRUBits[0] == 1'b1)begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b101;
+					LRUBits_Out <= {LRUBits[6],1'b0,LRUBits[4:3],1'b1,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+
+				else if (LRUBits[6] == 1'b0 && LRUBits[2] == 1'b1 && LRUBits[0] == 1'b1)begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b110;
+					LRUBits_Out <= {1'b1,LRUBits[5:3],1'b0,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+				else begin //if LRUBits[0] and LRUBits[1] are both 0
+					ReplaceBlockNumberData <= 3'b111;
+					LRUBits_Out <= {1'b0,LRUBits[5:3],1'b0,LRUBits[1],1'b0}; //set 3 bit LRUBits_Out to {LRUBits[2] concated with binary 11};
+				end
+
 				LRU_WE_L <= 1'b0;
 				LoadReplacementBlockNumber_H <= 1'b1;
 				NextState <= ReadDataFromDramIntoCache;
@@ -322,7 +357,7 @@ module M68kAssociativeCacheController_Verilog (
 // Got a Cache hit, so give the 68k the Cache data now then wait for the 68k to end bus cycle 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-		else if(CurrentState == WaitForEndOfCacheRead) begin		
+		else if(CurrentState == WaitForEndOfCacheRead) begin//change	
 			UDS_DramController_L <= 1'b0; // activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram 
 			LDS_DramController_L <= 1'b0;// regardless of what 68k asks
 			// remember defaults:DataBusOutTo68k = DataBusInFromCache,AddressBusOutToDram = AddressBusInFrom68k, 
@@ -342,7 +377,7 @@ module M68kAssociativeCacheController_Verilog (
 // Start of operation to Read from Dram State : Remember that CAS latency is 2 clocks before 1st item of burst data appears
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		else if(CurrentState == ReadDataFromDramIntoCache) begin
+		else if(CurrentState == ReadDataFromDramIntoCache) begin//change
 			UDS_DramController_L <= 1'b0; // activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram 
 			LDS_DramController_L <= 1'b0;// regardless of what 68k asks
 			// Kick start the Dram controller to perform a burst read and fill a Line in the cache
@@ -357,21 +392,38 @@ module M68kAssociativeCacheController_Verilog (
 			// By Default: TagDataOut set to AddressBusInFrom68k(31..7); // tag is 25 bits
 			ValidBitOut_H <= 1'b1; //set ValidBitOut_H to 1; // output “valid” signal
 			// identify which block we are going to store the new data in based on the LRU bits 
-			if (ReplaceBlockNumber == 2'b00)begin//if 2 bit ReplaceBlockNumber is binary 00 {
+
+			if (ReplaceBlockNumber == 3'b000)begin//if 2 bit ReplaceBlockNumber is binary 00 {
 				TagCache_WE_L[0] <= 1'b0; //Activate TagCache_WE_L[0]; // issue write signal to Tag block 0
 				ValidBit_WE_L[0] <= 1'b0;//Activate ValidBit_WE_L[0]; // issue write signal to Valid block 0
 			end
-			else if (ReplaceBlockNumber == 2'b01)begin//if 2 bit ReplaceBlockNumber is binary 01 {
+			else if (ReplaceBlockNumber == 3'b001)begin//if 2 bit ReplaceBlockNumber is binary 01 {
 				TagCache_WE_L[1] <= 1'b0; //Activate TagCache_WE_L[1]; // issue write signal to Tag block 1
 				ValidBit_WE_L[1] <= 1'b0;//Activate ValidBit_WE_L[1]; // issue write signal to Valid block 1
 			end
-			else if (ReplaceBlockNumber == 2'b10)begin//if 2 bit ReplaceBlockNumber is binary 10 {
+			else if (ReplaceBlockNumber == 3'b010)begin//if 2 bit ReplaceBlockNumber is binary 10 {
 				TagCache_WE_L[2] <= 1'b0; //Activate TagCache_WE_L[2]; // issue write signal to Tag block 2
 				ValidBit_WE_L[2] <= 1'b0;//Activate ValidBit_WE_L[2]; // issue write signal to Valid block 2
 			end
-			else begin
+			else if (ReplaceBlockNumber == 3'b011)begin
 				TagCache_WE_L[3] <= 1'b0; //Activate TagCache_WE_L[3]; // issue write signal to Tag block 3
 				ValidBit_WE_L[3] <= 1'b0; //Activate ValidBit_WE_L[3]; // issue write signal to Valid block 3
+			end
+			else if (ReplaceBlockNumber == 3'b100)begin//if 2 bit ReplaceBlockNumber is binary 00 {
+				TagCache_WE_L[4] <= 1'b0; //Activate TagCache_WE_L[4]; // issue write signal to Tag block 4
+				ValidBit_WE_L[4] <= 1'b0;//Activate ValidBit_WE_L[4]; // issue write signal to Valid block 4
+			end
+			else if (ReplaceBlockNumber == 3'b101)begin//if 2 bit ReplaceBlockNumber is binary 00 {
+				TagCache_WE_L[5] <= 1'b0; //Activate TagCache_WE_L[5]; // issue write signal to Tag block 5
+				ValidBit_WE_L[5] <= 1'b0;//Activate ValidBit_WE_L[5]; // issue write signal to Valid block 5
+			end
+			else if (ReplaceBlockNumber == 3'b110)begin//if 2 bit ReplaceBlockNumber is binary 00 {
+				TagCache_WE_L[6] <= 1'b0; //Activate TagCache_WE_L[6]; // issue write signal to Tag block 6
+				ValidBit_WE_L[6] <= 1'b0;//Activate ValidBit_WE_L[6]; // issue write signal to Valid block 6
+			end
+			else begin
+				TagCache_WE_L[7] <= 1'b0; //Activate TagCache_WE_L[6]; // issue write signal to Tag block 6
+				ValidBit_WE_L[7] <= 1'b0;//Activate ValidBit_WE_L[6]; // issue write signal to Valid block 6
 			end
 		end
 						
@@ -404,7 +456,7 @@ module M68kAssociativeCacheController_Verilog (
 // Start of burst fill from Dram into Cache (data should be available at Dram in this  state)
 /////////////////////////////////////////////////////////////////////////////////////////////
 		
-		else if(CurrentState == BurstFill) begin
+		else if(CurrentState == BurstFill) begin //change
 			UDS_DramController_L <= 1'b0; // activate UDS and LDS to the Dram Controller to grab both bytes from Cache or Dram 
 			LDS_DramController_L <= 1'b0;// regardless of what 68k asks
 			DramSelectFromCache_L <= 1'b0;//Activate DramSelectFromCache_L; // keep reading from Dram
@@ -416,17 +468,29 @@ module M68kAssociativeCacheController_Verilog (
 			else begin
 				// Use burst counter to supply the 3 bit address to the data Cache
 				WordAddress <= BurstCounter[2:0];//WordAddress = BurstCounter[2..0];
-				if(ReplaceBlockNumber == 2'b00)begin//if 2 bit ReplaceBlockNumber is binary 00
+				if(ReplaceBlockNumber == 3'b000)begin//if 2 bit ReplaceBlockNumber is binary 00
 					DataCache_WE_L[0] <= 1'b0;//activate DataCache_WE_L[0]; // write data signal to block 0
 				end
-				else if(ReplaceBlockNumber == 2'b01)begin//else if 2 bit ReplaceBlockNumber is binary 01 
+				else if(ReplaceBlockNumber == 3'b001)begin//else if 2 bit ReplaceBlockNumber is binary 01 
 					DataCache_WE_L[1] <= 1'b0;//activate DataCache_WE_L[1];   // write data signal to block 1
 				end
-				else if(ReplaceBlockNumber == 2'b10)begin//else if 2 bit ReplaceBlockNumber is binary 10
+				else if(ReplaceBlockNumber == 3'b010)begin//else if 2 bit ReplaceBlockNumber is binary 10
 					DataCache_WE_L[2] <= 1'b0;//activate DataCache_WE_L[2]; // write data signal to block 2
 				end
-				else begin
+				else if(ReplaceBlockNumber == 3'b011) begin
 					DataCache_WE_L[3] <= 1'b0;//activate DataCache_WE_L[3]; // write data signal to block 2
+				end
+				else if(ReplaceBlockNumber == 3'b100) begin
+					DataCache_WE_L[4] <= 1'b0;//activate DataCache_WE_L[3]; // write data signal to block 2
+				end
+				else if(ReplaceBlockNumber == 3'b101) begin
+					DataCache_WE_L[5] <= 1'b0;//activate DataCache_WE_L[3]; // write data signal to block 2
+				end
+				else if(ReplaceBlockNumber == 3'b110) begin
+					DataCache_WE_L[6] <= 1'b0;//activate DataCache_WE_L[3]; // write data signal to block 2
+				end
+				else begin
+					DataCache_WE_L[7] <= 1'b0;//activate DataCache_WE_L[3]; // write data signal to block 2
 				end
 			end
 		end

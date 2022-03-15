@@ -660,7 +660,7 @@ refer to the applicable agreement for further details.
 (symbol
 	(rect 392 152 816 472)
 	(text "AssociativeDramCache" (rect 5 0 139 19)(font "Intel Clear" (font_size 8)))
-	(text "inst2" (rect 8 299 30 316)(font "Intel Clear" ))
+	(text "inst" (rect 8 299 24 316)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)

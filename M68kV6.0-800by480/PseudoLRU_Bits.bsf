@@ -26,8 +26,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "LRUBitsIn[2..0]" (rect 0 0 88 19)(font "Intel Clear" (font_size 8)))
-		(text "LRUBitsIn[2..0]" (rect 21 27 109 46)(font "Intel Clear" (font_size 8)))
+		(text "LRUBitsIn[6..0]" (rect 0 0 88 19)(font "Intel Clear" (font_size 8)))
+		(text "LRUBitsIn[6..0]" (rect 21 27 109 46)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
@@ -54,8 +54,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 240 32)
 		(output)
-		(text "LRUBitsOut[2..0]" (rect 0 0 99 19)(font "Intel Clear" (font_size 8)))
-		(text "LRUBitsOut[2..0]" (rect 120 27 219 46)(font "Intel Clear" (font_size 8)))
+		(text "LRUBitsOut[6..0]" (rect 0 0 99 19)(font "Intel Clear" (font_size 8)))
+		(text "LRUBitsOut[6..0]" (rect 120 27 219 46)(font "Intel Clear" (font_size 8)))
 		(line (pt 240 32)(pt 224 32)(line_width 3))
 	)
 	(drawing

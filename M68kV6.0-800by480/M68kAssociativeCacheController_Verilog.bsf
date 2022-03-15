@@ -124,22 +124,22 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 256)
 		(input)
-		(text "ValidHit_H[3..0]" (rect 0 0 63 12)(font "Arial" ))
-		(text "ValidHit_H[3..0]" (rect 21 251 84 263)(font "Arial" ))
+		(text "ValidHit_H[7..0]" (rect 0 0 63 12)(font "Arial" ))
+		(text "ValidHit_H[7..0]" (rect 21 251 84 263)(font "Arial" ))
 		(line (pt 0 256)(pt 16 256)(line_width 3))
 	)
 	(port
 		(pt 0 272)
 		(input)
-		(text "Valid_H[3..0]" (rect 0 0 53 12)(font "Arial" ))
-		(text "Valid_H[3..0]" (rect 21 267 74 279)(font "Arial" ))
+		(text "Valid_H[7..0]" (rect 0 0 53 12)(font "Arial" ))
+		(text "Valid_H[7..0]" (rect 21 267 74 279)(font "Arial" ))
 		(line (pt 0 272)(pt 16 272)(line_width 3))
 	)
 	(port
 		(pt 0 288)
 		(input)
-		(text "LRUBits_In[2..0]" (rect 0 0 68 12)(font "Arial" ))
-		(text "LRUBits_In[2..0]" (rect 21 283 89 295)(font "Arial" ))
+		(text "LRUBits_In[6..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "LRUBits_In[6..0]" (rect 21 283 89 295)(font "Arial" ))
 		(line (pt 0 288)(pt 16 288)(line_width 3))
 	)
 	(port
@@ -201,22 +201,22 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 384 160)
 		(output)
-		(text "TagCache_WE_L[3..0]" (rect 0 0 96 12)(font "Arial" ))
-		(text "TagCache_WE_L[3..0]" (rect 267 155 363 167)(font "Arial" ))
+		(text "TagCache_WE_L[7..0]" (rect 0 0 96 12)(font "Arial" ))
+		(text "TagCache_WE_L[7..0]" (rect 267 155 363 167)(font "Arial" ))
 		(line (pt 384 160)(pt 368 160)(line_width 3))
 	)
 	(port
 		(pt 384 176)
 		(output)
-		(text "DataCache_WE_L[3..0]" (rect 0 0 100 12)(font "Arial" ))
-		(text "DataCache_WE_L[3..0]" (rect 263 171 363 183)(font "Arial" ))
+		(text "DataCache_WE_L[7..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "DataCache_WE_L[7..0]" (rect 263 171 363 183)(font "Arial" ))
 		(line (pt 384 176)(pt 368 176)(line_width 3))
 	)
 	(port
 		(pt 384 192)
 		(output)
-		(text "ValidBit_WE_L[3..0]" (rect 0 0 84 12)(font "Arial" ))
-		(text "ValidBit_WE_L[3..0]" (rect 279 187 363 199)(font "Arial" ))
+		(text "ValidBit_WE_L[7..0]" (rect 0 0 84 12)(font "Arial" ))
+		(text "ValidBit_WE_L[7..0]" (rect 279 187 363 199)(font "Arial" ))
 		(line (pt 384 192)(pt 368 192)(line_width 3))
 	)
 	(port
@@ -257,8 +257,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 384 288)
 		(output)
-		(text "LRUBits_Out[2..0]" (rect 0 0 75 12)(font "Arial" ))
-		(text "LRUBits_Out[2..0]" (rect 288 283 363 295)(font "Arial" ))
+		(text "LRUBits_Out[6..0]" (rect 0 0 75 12)(font "Arial" ))
+		(text "LRUBits_Out[6..0]" (rect 288 283 363 295)(font "Arial" ))
 		(line (pt 384 288)(pt 368 288)(line_width 3))
 	)
 	(port
